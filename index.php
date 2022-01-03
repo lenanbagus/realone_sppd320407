@@ -27,7 +27,7 @@
 		<br>
 		<div class="card text-center shadow-lg">
 			<div class="card-header bg-success text-white">
-				<strong>Aplikasi AgendaAgendaAgendaAgendaAgenda Perjalanan Dinas</strong>
+				<strong>Aplikasi Agendadadadadadadadadada Perjalanan Dinas</strong>
 			</div>
 			<div class="card-body bg-light">
 
