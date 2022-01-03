@@ -1,0 +1,65 @@
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+  letter-spacing: .4px;
+}
+
+.top-breadcrumb {
+  padding: 5px 0;
+}
+
+.breadcrumb {
+  padding: 0;
+  margin-bottom: 0;
+  background-color: transparent;
+}
+
+.breadcrumb-item a {
+  color: #fff;
+}
+
+.breadcrumb-item.active {
+  color: #000;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+  color: #000;
+}
+
+.btn-action-custom {
+  color: #fff !important;
+}
+
+.btn-delete-modal {
+  padding: 0.25rem 0.5rem;
+  font-size: .875rem;
+}
+
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.grid-head {
+  background-color: #c3e6cb;
+  padding: 5px 0;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(0,0,0,.125);
+}
+
+.grid-body {
+  padding: 10px 0;
+  font-size: 14px;
+}
+
+.grid-body:hover {
+  background-color: rgba(0,0,0,.075);
+}
+
+.grid-body:nth-child(even) {
+  background-color: #FFF;
+}
+
+.grid-body:nth-child(odd) {
+  background-color: #EEE;
+}
