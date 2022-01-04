@@ -6,7 +6,7 @@
   include 'head.php';
   ?>
 
-  <title>Input Notulen</title>
+  <title>Input Notulen Kegiatan</title>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
           <div>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="index.php">Menu Utama</a></li>
-              <li class="breadcrumb-item"><a href="show_notulen.php">Data</a></li>
+              <li class="breadcrumb-item"><a href="show_agenda.php">Data</a></li>
               <li class="breadcrumb-item active" aria-current="page">Ubah Data Agenda</li>
             </ol>
           </div>
@@ -39,20 +39,20 @@
           <div class="row mb-1">
             <div class="col">
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-6">
               <h4 class="text-center mb-1">
+
                 <div class="form-group mb-0">
-                  <select class="form-control form-control-sm border border-success" name="id_asn" id="id_asn">
-                    <option disabled selected>Pilih Kegiatan</option>
+                  <select class="form-control form-control-sm border border-success" name="id" id="id">
+                    <option disabled selected>Pilih Agenda Kegiatan</option>
                     <?php
-                    // $result = $mysqli->query("SELECT * FROM data_agenda");
                     $result = $mysqli->query("SELECT * FROM data_asn INNER JOIN data_agenda ON data_asn.id = data_agenda.id_asn ORDER BY tgl_mulai DESC") or die($mysqli->error);
 
                     while ($row = $result->fetch_assoc()) {
                       $keterangan = "";
 
-                      if (isset($_GET['id'])) {
-                        $get_id_asn = trim($_GET['id']);
+                      if (isset($_GET['id_asn'])) {
+                        $get_id_asn = trim($_GET['id_asn']);
 
                         if ($get_id_asn == $row['id']) {
                           $keterangan = "selected";
@@ -73,26 +73,20 @@
             <div class="col"></div>
           </div>
 
-          <div class="row mb-2">
+          <div class="row mb-1">
+            <div class="col">
 
-            <div class="col-sm-2"></div>
-
-            <div class="col-sm-5">
-              <div class="mb-2 mt-2">
-                <!-- <label for="exampleFormControlTextarea1" class="form-label">Isi Notulen</label> -->
-                <textarea class="form-control border border-success" id="exampleFormControlTextarea1" rows="6" placeholder="Isi notulen"></textarea>
-              </div>
             </div>
+            <div class="col-sm-6">
 
-            <div class="col-sm-3">
-              <div class="mt-3">
-                <label for="formFile" class="form-label">Unggah Foto Kegiatan</label>
-                <input class="form-control border border-success" type="file" id="formFile">
-              </div>
             </div>
-            <div class="col-sm-2"></div>
+            <div class="col">
 
+            </div>
           </div>
+
+
+
 
 
 
