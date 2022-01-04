@@ -23,7 +23,7 @@
 					<div class="mr-auto"><strong></strong></div>
 					<div>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="home.php">Menu Utama</a></li>
+							<li class="breadcrumb-item"><a href="index.php">Menu Utama</a></li>
 							<li class="breadcrumb-item"><a href="show_agenda.php">Data</a></li>
 							<li class="breadcrumb-item active" aria-current="page">Ubah Data Agenda</li>
 						</ol>
@@ -44,7 +44,7 @@
 
 								<div class="form-group mb-0">
 									<select class="form-control form-control-sm border border-success" name="id_asn" id="id_asn">
-										<option disabled selected>Pilih Nama ASN</option>
+										<option disabled selected>Pilih Nama Pegawai</option>
 										<?php
 										$result = $mysqli->query("SELECT * FROM data_asn");
 
@@ -58,7 +58,7 @@
 													$keterangan = "selected";
 												}
 											} else {
-												$keterangan = "anjing";
+												$keterangan = "damn";
 											}
 
 										?>
@@ -120,7 +120,7 @@
 						<div class="col"></div>
 					</div>
 
-					<div class="row mb-3">
+					<div class="row mb-2">
 						<div class="col"></div>
 						<div class="col-sm-2">
 							<input class="form-control form-control-sm border border-success" name="pengikut_a" value="<?php echo $pengikut_a; ?>" type="text" placeholder="Pengikut 1">
@@ -134,11 +134,25 @@
 						<div class="col"></div>
 					</div>
 
+					<div class="row mb-2">
+						<div class="col"></div>
+						<div class="col-sm-2">
+							<input class="form-control form-control-sm border border-success" name="nik_a" value="<?php echo $nik_a; ?>" type="text" placeholder="NIP">
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control form-control-sm border border-success" name="nik_b" value="<?php echo $nik_b; ?>" type="text" placeholder="NIP">
+						</div>
+						<div class="col-sm-2">
+							<input class="form-control form-control-sm border border-success" name="nik_c" value="<?php echo $nik_c; ?>" type="text" placeholder="NIP">
+						</div>
+						<div class="col"></div>
+					</div>
+
 					<div class="form-group">
 						<?php if ($update == true) : ?>
-							<button class="btn btn-info" type="submit" name="update2">Update</button>
+							<button class="btn btn-info mt-2" type="submit" name="update2">Update</button>
 						<?php else : ?>
-							<button class="btn btn-success" type="submit" name="save2">Simpan</button>
+							<button class="btn btn-success mt-2" type="submit" name="save2">Simpan</button>
 						<?php endif; ?>
 					</div>
 				</form>

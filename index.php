@@ -27,7 +27,7 @@
 		<br>
 		<div class="card text-center shadow-lg">
 			<div class="card-header bg-success text-white">
-				<strong>Aplikasi Agendadadadadadadadadada Perjalanan Dinas</strong>
+				<strong>Aplikasi Agenda Perjalanan Dinas</strong>
 			</div>
 			<div class="card-body bg-light">
 
@@ -35,8 +35,9 @@
 					<div class="col-sm-4">
 						<div class="card shadow-lg">
 							<div class="card-body">
-								<h5 class="card-title">Data Karyawan</h5>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+								<h5 class="card-title">Data Pegawai</h5>
+								<p class="card-text">Registrasi data pegawai sebelum melakukan input Agenda Perjalanan</p>
+								<br>
 								<a href="data_asn.php" class="btn btn-success">Register</a>
 							</div>
 						</div>
@@ -45,7 +46,7 @@
 						<div class="card shadow-lg">
 							<div class="card-body">
 								<h5 class="card-title">Agenda Perjalanan</h5>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+								<p class="card-text">Surat tugas kepada Pejabat Negara, Pegawai Negeri Sipil dan Pegawai Harian Lepas untuk melaksanakan perjalanan dinas</p>
 								<a href="data_agenda.php" class="btn btn-success">Buat Agenda</a>
 							</div>
 						</div>
@@ -54,7 +55,8 @@
 						<div class="card shadow-lg">
 							<div class="card-body">
 								<h5 class="card-title">Notulen Rapat / Bimtek</h5>
-								<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+								<p class="card-text">Catatan penting dalam jalannya sebuah pertemuan yang bersifat resmi</p>
+								<br>
 								<a href="#" class="btn btn-success">Buat Notulen</a>
 							</div>
 						</div>

@@ -44,7 +44,10 @@
 	<?php endif ?>
 
 	<?php
-	$mysqli = new mysqli('localhost:3306', 'tane8339_lenan', '320407.', 'tane8339_cilengkrang') or die(mysqli_error($mysqli));
+	// db_hosting below
+	// $mysqli = new mysqli('localhost:3306', 'tane8339_lenan', '320407.', 'tane8339_cilengkrang') or die(mysqli_error($mysqli));
+	$mysqli = new mysqli('localhost', 'root', '', 'cilengkrang') or die(mysqli_error($mysqli));
+
 	$result = $mysqli->query("SELECT * FROM data_asn INNER JOIN data_agenda ON data_asn.id = data_agenda.id_asn ORDER BY tgl_mulai DESC") or die($mysqli->error);
 	?>
 
@@ -56,7 +59,7 @@
 					<div class="mr-auto"><strong></strong></div>
 					<div>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="home.php">Menu Utama</a></li>
+							<li class="breadcrumb-item"><a href="index.php">Menu Utama</a></li>
 							<li class="breadcrumb-item active" aria-current="page">Data Agenda Karyawan</li>
 						</ol>
 					</div>
@@ -65,17 +68,17 @@
 
 			<div class="card-body bg-light">
 				<div class="row grid-head d-flex align-items-center">
-					<div class="col-12 col-lg-2 mb-3">
-						<strong>DASAR SURAT</strong>
+					<div class="col-12 col-lg-2">
+						<strong>Dasar Surat</strong>
 					</div>
-					<div class="col-12 col-lg-3 mb-3">
-						<strong>NAMA</strong>
+					<div class="col-12 col-lg-3">
+						<strong>Nama</strong>
 					</div>
-					<div class="col-12 col-lg-6 mb-3">
-						<strong>KEGIATAN</strong>
+					<div class="col-12 col-lg-5">
+						<strong>Kegiatan</strong>
 					</div>
-					<div class="col-12 col-lg-1 p-0 mb-3 text-center">
-						<strong>#</strong>
+					<div class="col-12 col-lg-2 text-center">
+						<strong>Opsi</strong>
 					</div>
 				</div>
 
@@ -203,25 +206,25 @@
 					}
 					?>
 
-					<div class="row grid-body mb-2">
+					<div class="row grid-body">
 						<div class="col-12 col-lg-2">
 							<?php echo $row['dasar_surat']; ?>
 						</div>
-						<div class="col-12 col-lg-3 ">
+						<div class="col-12 col-lg-3">
 							<?php echo $row['name']; ?>
 						</div>
-						<div class="col-12 col-lg-6">
+						<div class="col-12 col-lg-5">
 							<?php echo $row['kegiatan']; ?>
 						</div>
-						<div class="col-12 col-lg-1 text-center p-0">
-							<a href="data_agenda.php?edit2=<?php echo $row['id']; ?>" class="mr-2">
-								<i class="fa fa-pencil-square-o" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edit"></i>
+						<div class="col-12 col-lg-2 text-center">
+							<a href="data_agenda.php?edit2=<?php echo $row['id']; ?>" class="mr-1">
+								<i class="fa fa-pencil-square-o" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edit"></i> Edit |
 							</a>
 
 							<!-- Modal Delete #start -->
-							<a href="" data-toggle="modal" data-target="#hapusSspd<?php echo $row['id']; ?>" class="mr-2">
+							<!-- <a href="" data-toggle="modal" data-target="#hapusSspd<?php echo $row['id']; ?>" class="mr-2">
 								<i class="fa fa-trash-o" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Hapus"></i>
-							</a>
+							</a> -->
 
 							<div class="modal fade" id="hapusSspd<?php echo $row['id']; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="hapusSspdLabel" aria-hidden="true">
 								<div class="modal-dialog">
@@ -248,7 +251,7 @@
 
 							<!-- Preview Modal #start -->
 							<a href="" data-toggle="modal" data-target="#cetakSspd<?php echo $row['id']; ?>" class="mr-2">
-								<i class="fa fa-print" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Cetak"></i>
+								<i class="fa fa-print" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Cetak"></i> Print
 							</a>
 
 							<div class="modal fade bd-example-modal-lg" id="cetakSspd<?php echo $row['id']; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="cetakSspdLabel" aria-hidden="true">
@@ -281,7 +284,7 @@
 				<?php endwhile; ?>
 
 				<div class="row justify-content-end">
-					<div class="mt-3">
+					<div class="mt-5 mb-2">
 						<a href="data_agenda.php" class="btn btn-success btn-sm">Tambah Agenda Perjalanan</a>
 					</div>
 				</div>

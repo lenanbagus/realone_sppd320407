@@ -33,7 +33,7 @@
 					<div class="mr-auto"></div>
 					<div>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="home.php">Menu Utama</a></li>
+							<li class="breadcrumb-item"><a href="index.php">Menu Utama</a></li>
 							<li class="breadcrumb-item"><a href="show_asn.php">Data</a></li>
 							<li class="breadcrumb-item active" aria-current="page">Registrasi Karyawan</li>
 						</ol>
@@ -53,7 +53,7 @@
 
 					<div class="row mb-2 justify-content-md-center">
 						<div class="col-sm-6">
-							<input class="form-control form-control-sm border border-success" value="<?php echo $nip; ?>" name="nip" type="number" onKeyDown="if(this.value.length==18) return false;" placeholder="NIP">
+							<input class="form-control form-control-sm border border-success" value="<?php echo $nip; ?>" name="nip" type="number" placeholder="NIP">
 						</div>
 					</div>
 
@@ -72,23 +72,23 @@
 								<select class="form-control form-control-sm border border-success" value="<?php echo $golongan; ?>" name="golongan">
 									<option value="" selected>Pilih Golongan</option>
 									<optgroup label="Golongan II">
-										<option value="II/a">II/a - Pengatur Muda</option>
-										<option value="II/b">II/b - Pengatur Muda Tingkat I</option>
-										<option value="II/c">II/c - Pengatur</option>
-										<option value="II/d">II/d - Pengatur Tingkat I</option>
+										<option value="II/a - Pengatur Muda">II/a - Pengatur Muda</option>
+										<option value="II/b - Pengatur Muda Tingkat I">II/b - Pengatur Muda Tingkat I</option>
+										<option value="II/c - Pengatur">II/c - Pengatur</option>
+										<option value="II/d - Pengatur Tingkat I">II/d - Pengatur Tingkat I</option>
 									</optgroup>
 									<optgroup label="Golongan III">
-										<option value="III/a">III/a - Penata Muda</option>
-										<option value="III/b">III/b - Penata Muda Tingkat I</option>
-										<option value="III/c">III/c - Penata</option>
-										<option value="III/d">III/d - Penata Tingkat I</option>
+										<option value="III/a - Penata Muda">III/a - Penata Muda</option>
+										<option value="III/b - Penata Muda Tingkat I">III/b - Penata Muda Tingkat I</option>
+										<option value="III/c - Penata">III/c - Penata</option>
+										<option value="III/d - Penata Tingkat I">III/d - Penata Tingkat I</option>
 									</optgroup>
 									<optgroup label="Golongan IV">
-										<option value="IV/a">IV/a - Pembina</option>
-										<option value="IV/b">IV/b - Pembina Tingkat I</option>
-										<option value="IV/c">IV/c - Pembina Utama Muda</option>
-										<option value="IV/d">IV/d - Pembina Utama Madya</option>
-										<option value="IV/e">IV/e - Pembina Utama</option>
+										<option value="IV/a - Pembina">IV/a - Pembina</option>
+										<option value="IV/b - Pembina Tingkat I">IV/b - Pembina Tingkat I</option>
+										<option value="IV/c - Pembina Utama Muda">IV/c - Pembina Utama Muda</option>
+										<option value="IV/d - Pembina Utama Madya">IV/d - Pembina Utama Madya</option>
+										<option value="IV/e - Pembina Utama">IV/e - Pembina Utama</option>
 									</optgroup>
 								</select>
 							</div>

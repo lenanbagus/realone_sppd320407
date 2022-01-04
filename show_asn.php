@@ -44,7 +44,10 @@
 	<?php endif ?>
 
 	<?php
-	$mysqli = new mysqli('localhost:3306', 'tane8339_lenan', '320407.', 'tane8339_cilengkrang') or die(mysqli_error($mysqli));
+	// db_hosting below
+	// $mysqli = new mysqli('localhost:3306', 'tane8339_lenan', '320407.', 'tane8339_cilengkrang') or die(mysqli_error($mysqli));
+	$mysqli = new mysqli('localhost', 'root', '', 'cilengkrang') or die(mysqli_error($mysqli));
+
 	$result = $mysqli->query("SELECT * FROM data_asn ORDER BY golongan DESC") or die($mysqli->error);
 	?>
 
@@ -56,7 +59,7 @@
 					<div class="mr-auto"><strong></strong></div>
 					<div>
 						<ol class="breadcrumb">
-							<li class="breadcrumb-item"><a href="home.php">Menu Utama</a></li>
+							<li class="breadcrumb-item"><a href="index.php">Menu Utama</a></li>
 							<li class="breadcrumb-item active" aria-current="page">Data Karyawan</li>
 						</ol>
 					</div>
@@ -68,20 +71,20 @@
 					<!-- <div class="col-12 col-lg-1">
 						BUAT AGENDA
 					</div> -->
-					<div class="col-12 col-lg-2 mb-2">
-						<strong>NIP</strong>
+					<div class="col-12 col-lg-2">
+						<strong>N I P</strong>
 					</div>
-					<div class="col-12 col-lg-2 mb-2">
-						<strong>NAMA</strong>
+					<div class="col-12 col-lg-2">
+						<strong>Nama</strong>
 					</div>
-					<div class="col-12 col-lg-4 mb-2">
-						<strong>JABATAN</strong>
+					<div class="col-12 col-lg-4">
+						<strong>Jabatan</strong>
 					</div>
-					<div class="col-12 col-lg-3 mb-2 text-center">
-						<strong>Gol</strong>
+					<div class="col-12 col-lg-3">
+						<strong>Golongan</strong>
 					</div>
-					<div class="col-12 col-lg-1 p-0 mb-2 text-center">
-						<strong>#</strong>
+					<div class="col-12 col-lg-1 text-left">
+						<strong>Opsi</strong>
 					</div>
 				</div>
 
@@ -153,22 +156,23 @@
 								<i class="fa fa-file-text-o" aria-hidden="true"></i>
 							</a>
 						</div> -->
-						<div class="col-12 col-lg-2 mb-1">
+						<div class="col-12 col-lg-2">
 							<?php echo $row['nip']; ?>
 						</div>
-						<div class="col-12 col-lg-2 mb-1">
+						<div class="col-12 col-lg-2">
 							<?php echo $row['name']; ?>
 						</div>
-						<div class="col-12 col-lg-4 mb-1">
+						<div class="col-12 col-lg-4">
 							<?php echo $row['jabatan']; ?>
 						</div>
-						<div class="col-12 col-lg-3 mb-1 text-center">
+						<div class="col-12 col-lg-3">
 							<?php echo $row['golongan']; ?>
 						</div>
-						<div class="col-12 col-lg-1 mb-1 text-center p-0">
+						<div class="col-12 col-lg-1 text-left">
+
 							<!-- Detail Modal #start -->
-							<a href="" data-toggle="modal" data-target="#detailAsn<?php echo $row['id']; ?>" class="mr-2">
-								<i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Lihat"></i>
+							<a href="" data-toggle="modal" data-target="#detailAsn<?php echo $row['id']; ?>" class="">
+								<i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Lihat"></i> Edit
 							</a>
 
 							<div class="modal fade bd-example-modal-lg" id="detailAsn<?php echo $row['id']; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="detailAsnLabel" aria-hidden="true">
@@ -201,9 +205,9 @@
 							</a> -->
 
 							<!-- Modal Delete #start -->
-							<a href="" data-toggle="modal" data-target="#hapusAsn<?php echo $row['id']; ?>" class="ml-1 mr-1">
+							<!-- <a href="" data-toggle="modal" data-target="#hapusAsn<?php echo $row['id']; ?>" class="ml-1 mr-1">Hapus
 								<i class="fa fa-trash-o" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Hapus"></i>
-							</a>
+							</a> -->
 
 							<div class="modal fade bd-example-modal-lg" id="hapusAsn<?php echo $row['id']; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="hapusAsnLabel" aria-hidden="true">
 								<div class="modal-dialog modal-lg">

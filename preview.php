@@ -36,18 +36,18 @@
 	</div>
 	<div class="col-9 pl-0">
 		:
-    <?php
-			$tanggal_mulai = new DateTime($row['tgl_mulai']);
-			$tanggal_selesai =  new DateTime($row['tgl_selesai']);
-			$diff = $tanggal_selesai->diff($tanggal_mulai);
+		<?php
+		$tanggal_mulai = new DateTime($row['tgl_mulai']);
+		$tanggal_selesai =  new DateTime($row['tgl_selesai']);
+		$diff = $tanggal_selesai->diff($tanggal_mulai);
 
-			if ($diff->d <= 0) {
-				echo "1 Hari";
-			} else {
-				echo $diff->d;
-				echo " Hari";
-			}
-    ?>
+		if ($diff->d <= 0) {
+			echo "1 Hari";
+		} else {
+			echo $diff->d;
+			echo " Hari";
+		}
+		?>
 	</div>
 </div>
 <div class="row my-3">
@@ -63,7 +63,7 @@
 		Pengikut 1
 	</div>
 	<div class="col-9 pl-0">
-		: <?php echo $row['pengikut_a']; ?>
+		: <?php echo $row['pengikut_a'] . ' - ' . $row['nik_a']; ?>
 	</div>
 </div>
 <div class="row my-3">
@@ -71,7 +71,7 @@
 		Pengikut 2
 	</div>
 	<div class="col-9 pl-0">
-		: <?php echo $row['pengikut_b']; ?>
+		: <?php echo $row['pengikut_b'] . ' - ' . $row['nik_b']; ?>
 	</div>
 </div>
 <div class="row my-3">
@@ -79,6 +79,6 @@
 		Pengikut 3
 	</div>
 	<div class="col-9 pl-0">
-		: <?php echo $row['pengikut_c']; ?>
+		: <?php echo $row['pengikut_c'] . ' - ' . $row['nik_c']; ?>
 	</div>
 </div>

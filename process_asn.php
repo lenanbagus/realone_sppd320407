@@ -24,6 +24,9 @@ $kegiatan = '';
 $pengikut_a = '';
 $pengikut_b = '';
 $pengikut_c = '';
+$nik_a = '';
+$nik_b = '';
+$nik_c = '';
 $id_asn = '';
 
 if (isset($_POST['save'])) {
@@ -108,19 +111,25 @@ if (isset($_POST['save2'])) {
     $pengikut_a = $_POST['pengikut_a'];
     $pengikut_b = $_POST['pengikut_b'];
     $pengikut_c = $_POST['pengikut_c'];
+    $nik_a = $_POST['nik_a'];
+    $nik_b = $_POST['nik_b'];
+    $nik_c = $_POST['nik_c'];
     $id_asn = $_POST['id_asn'];
-    $mysqli->query("INSERT INTO data_agenda (dasar_surat,lokasi,kegiatan,tgl_mulai,tgl_selesai,jam_mulai,jam_selesai,pengikut_a,pengikut_b,pengikut_c,id_asn) VALUES 
-    ('$dasar_surat','$lokasi','$kegiatan','$tgl_mulai','$tgl_selesai','$jam_mulai','$jam_selesai','$pengikut_a','$pengikut_b','$pengikut_c','$id_asn')") or die($mysqli->error);
-    $_SESSION['message'] = "Record has been saved!";
-    $_SESSION['msg_type'] = "success";
+    $mysqli->query("INSERT INTO data_agenda 
+    (dasar_surat,lokasi,kegiatan,tgl_mulai,tgl_selesai,jam_mulai,jam_selesai,pengikut_a,pengikut_b,pengikut_c,nik_a,nik_b,nik_c,id_asn)
+    VALUES 
+    ('$dasar_surat','$lokasi','$kegiatan','$tgl_mulai','$tgl_selesai','$jam_mulai','$jam_selesai','$pengikut_a','$pengikut_b','$pengikut_c','$nik_a','$nik_b','$nik_c','$id_asn')")
+        or die($mysqli->error);
+    // $_SESSION['message'] = "Record has been saved!";
+    // $_SESSION['msg_type'] = "success";
     header("location: show_agenda.php");
 }
 
 if (isset($_GET['delete2'])) {
     $id_surat = $_GET['delete2'];
     $mysqli->query("DELETE FROM data_agenda WHERE id=$id_surat") or die($mysqli->error);
-    $_SESSION['message'] = "Record has been deleted!";
-    $_SESSION['msg_type'] = "danger";
+    // $_SESSION['message'] = "Record has been deleted!";
+    // $_SESSION['msg_type'] = "danger";
     header("location: show_agenda.php");
 }
 if (isset($_GET['edit2'])) {
@@ -142,6 +151,9 @@ if (isset($_GET['edit2'])) {
         $pengikut_a = $row['pengikut_a'];
         $pengikut_b = $row['pengikut_b'];
         $pengikut_c = $row['pengikut_c'];
+        $nik_a = $row['nik_a'];
+        $nik_b = $row['nik_b'];
+        $nik_c = $row['nik_c'];
         $_GET['id_asn'] = $row['id_asn'];
     }
 }
@@ -158,12 +170,15 @@ if (isset($_POST['update2'])) {
     $pengikut_a = $_POST['pengikut_a'];
     $pengikut_b = $_POST['pengikut_b'];
     $pengikut_c = $_POST['pengikut_c'];
+    $nik_a = $_POST['nik_a'];
+    $nik_b = $_POST['nik_b'];
+    $nik_c = $_POST['nik_c'];
     $id_asn = $_POST['id_asn'];
 
     $mysqli->query("UPDATE `data_agenda` SET 
     `dasar_surat` = '$dasar_surat', `lokasi` = '$lokasi', `kegiatan` = '$kegiatan', `tgl_mulai` = '$tgl_mulai', 
     `tgl_selesai` = '$tgl_selesai', `jam_mulai` = '$jam_mulai', `jam_selesai` = '$jam_selesai', `pengikut_a` = '$pengikut_a', 
-    `pengikut_b` = '$pengikut_b', `pengikut_c` = '$pengikut_c', `id_asn` = '$id_asn' WHERE `data_agenda`.`id` = $id_surat") or die($mysqli->error);
+    `pengikut_b` = '$pengikut_b', `pengikut_c` = '$pengikut_c', `nik_a` = '$nik_a', `nik_b` = '$nik_b', `nik_c` = '$nik_c', `id_asn` = '$id_asn' WHERE `data_agenda`.`id` = $id_surat") or die($mysqli->error);
 
     $_SESSION['message'] = "Record has been updated!";
     $_SESSION['msg_type'] = "warning";
