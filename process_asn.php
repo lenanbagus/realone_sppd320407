@@ -31,8 +31,6 @@ $id_asn = '';
 $id_agenda = '';
 $isi_notulen = '';
 
-$isi_notulen = '';
-
 if (isset($_POST['save'])) {
     $name = $_POST['name'];
     $nip = $_POST['nip'];
@@ -214,11 +212,13 @@ if (isset($_POST['update2'])) {
 
 //notulen_action
 if (isset($_POST['save3'])) {
+    echo $id_agenda;
     $isi_notulen = $_POST['isi_notulen'];
     $id_agenda = $_POST['id_agenda'];
-
+    
     $mysqli->query("INSERT INTO data_notulen (isi_notulen,id_agenda) VALUES ('$isi_notulen','$id_agenda')") or die($mysqli->error);
-    header("location: data_notulen.php");
+
+    header("location: show_notulen.php");
 }
 
 if (isset($_GET['delete3'])) {
@@ -246,4 +246,15 @@ if (isset($_POST['update3'])) {
     $_SESSION['message'] = "Record has been updated!";
     $_SESSION['msg_type'] = "warning";
     header("location: show_agenda.php");
+}
+
+
+// Generate notulen
+if (isset($_POST['generate_notulen'])) {
+    $id_agenda = $_POST['id_agenda'];
+    $isi_notulen = $_POST['isi_notulen'];
+    
+    $mysqli->query("INSERT INTO data_notulen (isi_notulen,id_agenda) VALUES ('$isi_notulen','$id_agenda')") or die($mysqli->error);
+
+    header("location: show_notulen.php");
 }

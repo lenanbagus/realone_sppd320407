@@ -77,7 +77,7 @@
 
             </div>
             <div class="col-sm-6">
-              <textarea class="form-control" rows="5" id="comment" name="isi_notulen" placeholder="Isi notulen ..." value="<?php echo $isi_notulen; ?>"></textarea>
+              <textarea class="form-control" rows="5" id="isi_notulen" name="isi_notulen" placeholder="Isi notulen ..." value="<?php echo $isi_notulen; ?>"></textarea>
             </div>
             <div class="col">
 

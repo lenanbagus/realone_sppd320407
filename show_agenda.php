@@ -74,10 +74,10 @@
 					<div class="col-12 col-lg-3">
 						<strong>Nama</strong>
 					</div>
-					<div class="col-12 col-lg-5">
+					<div class="col-12 col-lg-4">
 						<strong>Kegiatan</strong>
 					</div>
-					<div class="col-12 col-lg-2 text-center">
+					<div class="col-12 col-lg-3 text-center">
 						<strong>Opsi</strong>
 					</div>
 				</div>
@@ -213,10 +213,10 @@
 						<div class="col-12 col-lg-3">
 							<?php echo $row['name']; ?>
 						</div>
-						<div class="col-12 col-lg-5">
+						<div class="col-12 col-lg-4">
 							<?php echo $row['kegiatan']; ?>
 						</div>
-						<div class="col-12 col-lg-2 text-center">
+						<div class="col-12 col-lg-3 text-center">
 							<a href="data_agenda.php?edit2=<?php echo $row['id']; ?>" class="mr-1">
 								<i class="fa fa-pencil-square-o" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edit"></i> Edit |
 							</a>
@@ -251,7 +251,7 @@
 
 							<!-- Preview Modal #start -->
 							<a href="" data-toggle="modal" data-target="#cetakSspd<?php echo $row['id']; ?>" class="mr-2">
-								<i class="fa fa-print" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Cetak"></i> Print
+								<i class="fa fa-print" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Cetak"></i> Print |
 							</a>
 
 							<div class="modal fade bd-example-modal-lg" id="cetakSspd<?php echo $row['id']; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="cetakSspdLabel" aria-hidden="true">
@@ -279,6 +279,38 @@
 								</div>
 							</div>
 							<!-- Preview Modal #end -->
+
+							<!-- Generate Notulen Modal #start -->
+							<a href="" data-toggle="modal" data-target="#generateNotulen-<?php echo $row['id']; ?>" class="mr-2">
+								<i class="fa fa-plus" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Cetak"></i> Buat Notulen
+							</a>
+
+							<div class="modal fade bd-example-modal-lg" id="generateNotulen-<?php echo $row['id']; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="generateNotulenLabel" aria-hidden="true">
+								<form action="process_asn.php" method="post">
+									<input type="hidden" name="id_agenda" value="<?php echo $row['id']; ?>">
+
+									<div class="modal-dialog modal-lg">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h6 class="modal-title" id="generateNotulenLabel">
+													<strong><?php echo $row['kegiatan']; ?></strong>
+												</h6>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body text-left">
+												<?php include 'generate_notulen.php'; ?>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+												<button class="btn btn-primary" type="submit" name="generate_notulen">Buat Notulen</button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+							<!-- Generate Notulen Modal #end -->							
 						</div>
 					</div>
 				<?php endwhile; ?>
