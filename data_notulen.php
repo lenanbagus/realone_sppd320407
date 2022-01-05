@@ -34,7 +34,6 @@
       <div class="card-body bg-light">
         <form action="process_asn.php" method="post">
           <input type="hidden" name="id_asn" value="<?php echo $id; ?>" />
-          <input type="hidden" name="id_surat" value="<?php echo $id_surat; ?>" />
 
           <div class="row mb-1">
             <div class="col">
@@ -43,24 +42,22 @@
               <h4 class="text-center mb-1">
 
                 <div class="form-group mb-0">
-                  <select class="form-control form-control-sm border border-success" name="id_surat" id="id_surat">
+                  <select class="form-control form-control-sm border border-success" name="id_agenda" id="id_agenda">
                     <option disabled selected>Pilih Agenda Kegiatan</option>
                     <?php
-                    $result = $mysqli->query("SELECT * FROM data_agenda 
-                    JOIN data_notulen ON data_agenda.id = data_notulen.id_surat
-                    JOIN data_asn ON data_asn.id = data_agenda.id_asn") or die($mysqli->error);
+                    $result = $mysqli->query("SELECT * FROM data_agenda JOIN data_notulen ON data_agenda.id = data_notulen.id_agenda JOIN data_asn ON data_asn.id = data_agenda.id_asn") or die($mysqli->error);
 
                     while ($row = $result->fetch_assoc()) {
                       $keterangan = "";
 
-                      if (isset($_GET['id_surat'])) {
-                        $get_id_surat = trim($_GET['id_surat']);
+                      if (isset($_GET['id_agenda'])) {
+                        $get_id_agenda = trim($_GET['id_agenda']);
 
-                        if ($get_id_surat == $row['id']) {
+                        if ($get_id_agenda == $row['id']) {
                           $keterangan = "selected";
                         }
                       } else {
-                        $keterangan = "damn";
+                        $keterangan = "empty select";
                       }
 
                     ?>

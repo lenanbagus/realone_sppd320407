@@ -46,10 +46,12 @@
     <?php
     // db_hosting below
     // $mysqli = new mysqli('localhost:3306', 'tane8339_lenan', '320407.', 'tane8339_cilengkrang') or die(mysqli_error($mysqli));
-    $mysqli = new mysqli('localhost', 'root', '', 'cilengkrang') or die(mysqli_error($mysqli));
+
+		// (local) tidak perlu memanggil konfig db
+    //$mysqli = new mysqli('localhost', 'root', '', 'cilengkrang') or die(mysqli_error($mysqli));
 
     $result = $mysqli->query("SELECT * FROM data_agenda 
-    JOIN data_notulen ON data_agenda.id = data_notulen.id_surat
+    JOIN data_notulen ON data_agenda.id = data_notulen.id_agenda
     JOIN data_asn ON data_asn.id = data_agenda.id_asn") or die($mysqli->error);
     ?>
 
@@ -62,7 +64,7 @@
                     <div>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.php">Menu Utama</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Data Agenda Karyawan</li>
+                            <li class="breadcrumb-item active" aria-current="page">Data Notulen</li>
                         </ol>
                     </div>
                 </div>
@@ -79,10 +81,10 @@
                     <div class="col-12 col-lg-3">
                         <strong>Kegiatan</strong>
                     </div>
-                    <div class="col-12 col-lg-4 text-center">
+                    <div class="col-12 col-lg-3 text-center">
                         <strong>Isi Notulen</strong>
                     </div>
-                    <div class="col-12 col-lg-1 text-center">
+                    <div class="col-12 col-lg-2 text-center">
                         <strong>Opsi</strong>
                     </div>
                 </div>
@@ -221,17 +223,17 @@
                         <div class="col-12 col-lg-3">
                             <?php echo $row['kegiatan']; ?>
                         </div>
-                        <div class="col-12 col-lg-4">
+                        <div class="col-12 col-lg-3">
                             <?php echo $row['isi_notulen']; ?>
                         </div>
-                        <div class="col-12 col-lg-1 text-center">
+                        <div class="col-12 col-lg-2 text-center px-0">
                             <a href="data_notulen.php?edit3=<?php echo $row['id']; ?>" class="mr-1">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edit"></i> Edit |
                             </a>
 
                             <!-- Modal Delete #start -->
                             <a href="" data-toggle="modal" data-target="#hapusSspd<?php echo $row['id']; ?>" class="mr-2">
-                                <i class="fa fa-trash-o" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Hapus"></i>
+                                <i class="fa fa-trash-o" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Hapus"></i> Hapus |
                             </a>
                             <div class="modal fade" id="hapusSspd<?php echo $row['id']; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="hapusSspdLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -292,7 +294,7 @@
 
                 <div class="row justify-content-end">
                     <div class="mt-5 mb-2">
-                        <a href="data_agenda.php" class="btn btn-success btn-sm">Tambah Notulen Kegiatan</a>
+                        <a href="data_notulen.php" class="btn btn-success btn-sm">Tambah Notulen Kegiatan</a>
                     </div>
                 </div>
 

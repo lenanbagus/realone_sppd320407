@@ -58,7 +58,7 @@
 													$keterangan = "selected";
 												}
 											} else {
-												$keterangan = "damn";
+												$keterangan = "empty select";
 											}
 
 										?>
@@ -130,13 +130,13 @@
 					<div class="row mb-2">
 						<div class="col"></div>
 						<div class="col-sm-2">
-							<input class="form-control form-control-sm border border-success" name="nik_a" value="<?php echo $nik_a; ?>" type="text" placeholder="NIP">
+							<input class="form-control form-control-sm border border-success" name="nip_a" value="<?php echo $nip_a; ?>" type="text" placeholder="NIP">
 						</div>
 						<div class="col-sm-2">
-							<input class="form-control form-control-sm border border-success" name="nik_b" value="<?php echo $nik_b; ?>" type="text" placeholder="NIP">
+							<input class="form-control form-control-sm border border-success" name="nip_b" value="<?php echo $nip_b; ?>" type="text" placeholder="NIP">
 						</div>
 						<div class="col-sm-2">
-							<input class="form-control form-control-sm border border-success" name="nik_c" value="<?php echo $nik_c; ?>" type="text" placeholder="NIP">
+							<input class="form-control form-control-sm border border-success" name="nip_c" value="<?php echo $nip_c; ?>" type="text" placeholder="NIP">
 						</div>
 						<div class="col"></div>
 					</div>

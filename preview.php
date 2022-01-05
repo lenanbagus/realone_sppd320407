@@ -63,7 +63,7 @@
 		Pengikut 1
 	</div>
 	<div class="col-9 pl-0">
-		: <?php echo $row['pengikut_a'] . ' - ' . $row['nik_a']; ?>
+		: <?php echo $row['pengikut_a'] . ' - ' . $row['nip_a']; ?>
 	</div>
 </div>
 <div class="row my-3">
@@ -71,7 +71,7 @@
 		Pengikut 2
 	</div>
 	<div class="col-9 pl-0">
-		: <?php echo $row['pengikut_b'] . ' - ' . $row['nik_b']; ?>
+		: <?php echo $row['pengikut_b'] . ' - ' . $row['nip_b']; ?>
 	</div>
 </div>
 <div class="row my-3">
@@ -79,6 +79,6 @@
 		Pengikut 3
 	</div>
 	<div class="col-9 pl-0">
-		: <?php echo $row['pengikut_c'] . ' - ' . $row['nik_c']; ?>
+		: <?php echo $row['pengikut_c'] . ' - ' . $row['nip_c']; ?>
 	</div>
 </div>

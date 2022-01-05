@@ -24,10 +24,12 @@ $kegiatan = '';
 $pengikut_a = '';
 $pengikut_b = '';
 $pengikut_c = '';
-$nik_a = '';
-$nik_b = '';
-$nik_c = '';
+$nip_a = '';
+$nip_b = '';
+$nip_c = '';
 $id_asn = '';
+$id_agenda = '';
+$isi_notulen = '';
 
 $isi_notulen = '';
 
@@ -113,14 +115,14 @@ if (isset($_POST['save2'])) {
     $pengikut_a = $_POST['pengikut_a'];
     $pengikut_b = $_POST['pengikut_b'];
     $pengikut_c = $_POST['pengikut_c'];
-    $nik_a = $_POST['nik_a'];
-    $nik_b = $_POST['nik_b'];
-    $nik_c = $_POST['nik_c'];
+    $nip_a = $_POST['nip_a'];
+    $nip_b = $_POST['nip_b'];
+    $nip_c = $_POST['nip_c'];
     $id_asn = $_POST['id_asn'];
     $mysqli->query("INSERT INTO data_agenda 
-    (dasar_surat,lokasi,kegiatan,tgl_mulai,tgl_selesai,jam_mulai,jam_selesai,pengikut_a,pengikut_b,pengikut_c,nik_a,nik_b,nik_c,id_asn)
+    (dasar_surat,lokasi,kegiatan,tgl_mulai,tgl_selesai,jam_mulai,jam_selesai,pengikut_a,pengikut_b,pengikut_c,nip_a,nip_b,nip_c,id_asn)
     VALUES 
-    ('$dasar_surat','$lokasi','$kegiatan','$tgl_mulai','$tgl_selesai','$jam_mulai','$jam_selesai','$pengikut_a','$pengikut_b','$pengikut_c','$nik_a','$nik_b','$nik_c','$id_asn')")
+    ('$dasar_surat','$lokasi','$kegiatan','$tgl_mulai','$tgl_selesai','$jam_mulai','$jam_selesai','$pengikut_a','$pengikut_b','$pengikut_c','$nip_a','$nip_b','$nip_c','$id_asn')")
         or die($mysqli->error);
     // $_SESSION['message'] = "Record has been saved!";
     // $_SESSION['msg_type'] = "success";
@@ -153,9 +155,9 @@ if (isset($_GET['edit2'])) {
         $pengikut_a = $row['pengikut_a'];
         $pengikut_b = $row['pengikut_b'];
         $pengikut_c = $row['pengikut_c'];
-        $nik_a = $row['nik_a'];
-        $nik_b = $row['nik_b'];
-        $nik_c = $row['nik_c'];
+        $nip_a = $row['nip_a'];
+        $nip_b = $row['nip_b'];
+        $nip_c = $row['nip_c'];
         $_GET['id_asn'] = $row['id_asn'];
     }
 }
@@ -172,15 +174,15 @@ if (isset($_POST['update2'])) {
     $pengikut_a = $_POST['pengikut_a'];
     $pengikut_b = $_POST['pengikut_b'];
     $pengikut_c = $_POST['pengikut_c'];
-    $nik_a = $_POST['nik_a'];
-    $nik_b = $_POST['nik_b'];
-    $nik_c = $_POST['nik_c'];
+    $nip_a = $_POST['nip_a'];
+    $nip_b = $_POST['nip_b'];
+    $nip_c = $_POST['nip_c'];
     $id_asn = $_POST['id_asn'];
 
     $mysqli->query("UPDATE `data_agenda` SET 
     `dasar_surat` = '$dasar_surat', `lokasi` = '$lokasi', `kegiatan` = '$kegiatan', `tgl_mulai` = '$tgl_mulai', 
     `tgl_selesai` = '$tgl_selesai', `jam_mulai` = '$jam_mulai', `jam_selesai` = '$jam_selesai', `pengikut_a` = '$pengikut_a', 
-    `pengikut_b` = '$pengikut_b', `pengikut_c` = '$pengikut_c', `nik_a` = '$nik_a', `nik_b` = '$nik_b', `nik_c` = '$nik_c', `id_asn` = '$id_asn' WHERE `data_agenda`.`id` = $id_surat") or die($mysqli->error);
+    `pengikut_b` = '$pengikut_b', `pengikut_c` = '$pengikut_c', `nip_a` = '$nip_a', `nip_b` = '$nip_b', `nip_c` = '$nip_c', `id_asn` = '$id_asn' WHERE `data_agenda`.`id` = $id_surat") or die($mysqli->error);
 
     $_SESSION['message'] = "Record has been updated!";
     $_SESSION['msg_type'] = "warning";
@@ -213,9 +215,9 @@ if (isset($_POST['update2'])) {
 //notulen_action
 if (isset($_POST['save3'])) {
     $isi_notulen = $_POST['isi_notulen'];
-    $id_surat = $_POST['id_surat'];
+    $id_agenda = $_POST['id_agenda'];
 
-    $mysqli->query("INSERT INTO data_notulen (isi_notulen,id_surat) VALUES ('$isi_notulen','$id_surat')") or die($mysqli->error);
+    $mysqli->query("INSERT INTO data_notulen (isi_notulen,id_agenda) VALUES ('$isi_notulen','$id_agenda')") or die($mysqli->error);
     header("location: data_notulen.php");
 }
 
@@ -226,22 +228,21 @@ if (isset($_GET['delete3'])) {
 }
 
 if (isset($_GET['edit3'])) {
-    $id_surat = $_GET['edit3'];
+    $id_agenda = $_GET['edit3'];
     $update = true;
     $result = $mysqli->query("SELECT * FROM data_notulen WHERE id=$id") or die($mysqli->error);
-    echo $name;
     if (count(array($result)) == 1) {
         $row = $result->fetch_array();
         $isi_notulen = $row['isi_notulen'];
-        $id_surat = $row['id_surat'];
+        $id_agenda = $row['id_agenda'];
     }
 }
 
 if (isset($_POST['update3'])) {
     $isi_notulen = $_POST['isi_notulen'];
-    $id_surat = $_POST['id_surat'];
+    $id_agenda = $_POST['id_agenda'];
 
-    $mysqli->query("UPDATE data_notulen SET 'isi_notulen' = '$isi_notulen','id_surat'='$id_surat WHERE 'data_notulen'.'id' = '$id' ") or die($mysqli->error);
+    $mysqli->query("UPDATE data_notulen SET 'isi_notulen' = '$isi_notulen','id_agenda'='$id_agenda WHERE 'data_notulen'.'id' = '$id' ") or die($mysqli->error);
     $_SESSION['message'] = "Record has been updated!";
     $_SESSION['msg_type'] = "warning";
     header("location: show_agenda.php");
