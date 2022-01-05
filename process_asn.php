@@ -29,6 +29,8 @@ $nik_b = '';
 $nik_c = '';
 $id_asn = '';
 
+$isi_notulen = '';
+
 if (isset($_POST['save'])) {
     $name = $_POST['name'];
     $nip = $_POST['nip'];
@@ -185,24 +187,62 @@ if (isset($_POST['update2'])) {
     header("location: show_agenda.php");
 }
 
-if (isset($_GET['modal'])) {
-    $id_surat = $_GET['modal'];
-    // $update = true;
-    $result = $mysqli->query("SELECT * FROM data_agenda WHERE id=$id_surat") or die($mysqli->error);
+// if (isset($_GET['modal'])) {
+//     $id_surat = $_GET['modal'];
+//     // $update = true;
+//     $result = $mysqli->query("SELECT * FROM data_agenda WHERE id=$id_surat") or die($mysqli->error);
+//     if (count(array($result)) == 1) {
+//         $row = $result->fetch_array();
+//         // $golongan = $row['golongan'];
+//         // $jabatan = $row['jabatan'];
+//         $dasar_surat = $row['dasar_surat'];
+//         $lokasi = $row['lokasi'];
+//         $kegiatan = $row['kegiatan'];
+//         $tgl_mulai = date('Y-m-d', strtotime($row['tgl_mulai']));
+//         $tgl_selesai = date('Y-m-d', strtotime($row['tgl_selesai']));
+//         $jam_mulai = $row['jam_mulai'];
+//         $jam_selesai = $row['jam_selesai'];
+//         $pengikut_a = $row['pengikut_a'];
+//         $pengikut_b = $row['pengikut_b'];
+//         $pengikut_c = $row['pengikut_c'];
+//         // $id_asn = $row['id_asn'];
+//     }
+// }
+
+
+//notulen_action
+if (isset($_POST['save3'])) {
+    $isi_notulen = $_POST['isi_notulen'];
+    $id_surat = $_POST['id_surat'];
+
+    $mysqli->query("INSERT INTO data_notulen (isi_notulen,id_surat) VALUES ('$isi_notulen','$id_surat')") or die($mysqli->error);
+    header("location: data_notulen.php");
+}
+
+if (isset($_GET['delete3'])) {
+    $id = $_GET['delete3'];
+    $mysqli->query("DELETE FROM data_notulen WHERE id=$id") or die($mysqli->error);
+    header("location: show_notulen.php");
+}
+
+if (isset($_GET['edit3'])) {
+    $id_surat = $_GET['edit3'];
+    $update = true;
+    $result = $mysqli->query("SELECT * FROM data_notulen WHERE id=$id") or die($mysqli->error);
+    echo $name;
     if (count(array($result)) == 1) {
         $row = $result->fetch_array();
-        // $golongan = $row['golongan'];
-        // $jabatan = $row['jabatan'];
-        $dasar_surat = $row['dasar_surat'];
-        $lokasi = $row['lokasi'];
-        $kegiatan = $row['kegiatan'];
-        $tgl_mulai = date('Y-m-d', strtotime($row['tgl_mulai']));
-        $tgl_selesai = date('Y-m-d', strtotime($row['tgl_selesai']));
-        $jam_mulai = $row['jam_mulai'];
-        $jam_selesai = $row['jam_selesai'];
-        $pengikut_a = $row['pengikut_a'];
-        $pengikut_b = $row['pengikut_b'];
-        $pengikut_c = $row['pengikut_c'];
-        // $id_asn = $row['id_asn'];
+        $isi_notulen = $row['isi_notulen'];
+        $id_surat = $row['id_surat'];
     }
+}
+
+if (isset($_POST['update3'])) {
+    $isi_notulen = $_POST['isi_notulen'];
+    $id_surat = $_POST['id_surat'];
+
+    $mysqli->query("UPDATE data_notulen SET 'isi_notulen' = '$isi_notulen','id_surat'='$id_surat WHERE 'data_notulen'.'id' = '$id' ") or die($mysqli->error);
+    $_SESSION['message'] = "Record has been updated!";
+    $_SESSION['msg_type'] = "warning";
+    header("location: show_agenda.php");
 }

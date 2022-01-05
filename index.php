@@ -57,7 +57,7 @@
 								<h5 class="card-title">Notulen Rapat / Bimtek</h5>
 								<p class="card-text">Catatan penting dalam jalannya sebuah pertemuan yang bersifat resmi</p>
 								<br>
-								<a href="#" class="btn btn-success">Buat Notulen</a>
+								<a href="data_notulen.php" class="btn btn-success">Buat Notulen</a>
 							</div>
 						</div>
 					</div>

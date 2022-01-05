@@ -30,7 +30,7 @@
 						<a class="nav-link" href="show_agenda.php"><strong class="text-success">Agenda</strong></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#"><strong class="text-success">Notulen</strong></a>
+						<a class="nav-link" href="show_notulen.php"><strong class="text-success">Notulen</strong></a>
 					</li>
 				</ul>
 			</span>

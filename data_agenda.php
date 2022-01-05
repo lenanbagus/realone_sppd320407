@@ -69,13 +69,6 @@
 									</select>
 								</div>
 							</h4>
-							<!-- <p class="text-center small">
-								<em><?php echo $golongan; ?></em>
-								-
-								<strong>
-									<?php echo $jabatan; ?>
-								</strong>
-							</p> -->
 
 						</div>
 						<div class="col"></div>
