@@ -110,7 +110,7 @@ class PDF extends FPDF
 {
 }
 
-$pdf = new PDF();
+$pdf = new PDF('P', 'mm', 'A4');
 $pdf->AliasNbPages();
 
 //PAGE 1
@@ -311,8 +311,8 @@ $pdf->Cell(48, 7, '', 'R', 1, 'C');
 $pdf->Cell(9);
 $pdf->Cell(5, 7, '', 'L', 0, 'L');
 $pdf->Cell(65, 7, '2. ' . $row['pengikut_b'] . '', 'R', 0, 'L');
-$pdf->Cell(53, 7,'', 'R', 0, 'C');
-$pdf->Cell(48, 7,'' , 'R', 1, 'C');
+$pdf->Cell(53, 7, '', 'R', 0, 'C');
+$pdf->Cell(48, 7, '', 'R', 1, 'C');
 $pdf->Cell(9);
 $pdf->Cell(5, 7, '', 'L,B', 0, 'L');
 $pdf->Cell(65, 7, '3. ' . $row['pengikut_c'] . '', 'B,R', 0, 'L');
