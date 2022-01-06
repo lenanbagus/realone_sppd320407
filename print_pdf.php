@@ -116,12 +116,12 @@ $pdf->AliasNbPages();
 //PAGE 1
 $pdf->AddPage();
 
-$pdf->Image('image/kabbandung.png', 40, 9, 20);
-$pdf->SetFont('Arial', 'B', 16);
-$pdf->Cell(95);
-$pdf->Cell(30, 6, 'PEMERINTAH KABUPATEN BANDUNG', 0, 2, 'C');
+$pdf->Image('image/kabbandung.png', 37, 9, 20);
 $pdf->SetFont('Arial', 'B', 18);
-$pdf->Cell(30, 8, 'KECAMATAN CILENGKRANG', 0, 2, 'C');
+$pdf->Cell(95);
+$pdf->Cell(30, 7, 'PEMERINTAH KABUPATEN BANDUNG', 0, 2, 'C');
+$pdf->SetFont('Arial', 'B', 22);
+$pdf->Cell(30, 9, 'KECAMATAN CILENGKRANG', 0, 2, 'C');
 $pdf->SetFont('Arial', '', 10);
 $pdf->Cell(30, 4, 'Jl Pasirjati No 03, Jatiendah 40616 Telp 750 6363', 0, 2, 'C');
 $pdf->Cell(-15);
@@ -210,14 +210,14 @@ $pdf->Image('image/lock.jpg', 12, 275, 150);
 
 //PAGE 2
 $pdf->AddPage();
-$pdf->Image('image/kabbandung.png', 40, 9, 20);
-$pdf->SetFont('Arial', 'B', 16);
-$pdf->Cell(95);
-$pdf->Cell(30, 6, 'PEMERINTAH KABUPATEN BANDUNG', 0, 2, 'C');
+$pdf->Image('image/kabbandung.png', 37, 9, 20);
 $pdf->SetFont('Arial', 'B', 18);
-$pdf->Cell(30, 8, 'KECAMATAN CILENGKRANG', 0, 2, 'C');
+$pdf->Cell(95);
+$pdf->Cell(30, 7, 'PEMERINTAH KABUPATEN BANDUNG', 0, 2, 'C');
+$pdf->SetFont('Arial', 'B', 22);
+$pdf->Cell(30, 9, 'KECAMATAN CILENGKRANG', 0, 2, 'C');
 $pdf->SetFont('Arial', '', 10);
-$pdf->Cell(30, 4, 'Jl Pasirjati No 03, Jatiendah 40616 Telp 780 6363', 0, 2, 'C');
+$pdf->Cell(30, 4, 'Jl Pasirjati No 03, Jatiendah 40616 Telp 750 6363', 0, 2, 'C');
 $pdf->Cell(-15);
 $pdf->SetFont('Arial', 'B', 18);
 $pdf->Cell(30, 5, '________________________________________________', 0, 2, 'C');

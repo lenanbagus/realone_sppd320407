@@ -1,6 +1,6 @@
 <div>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-lg">
-		<a class="navbar-brand pl-2 " href="index.php">
+		<a class="navbar-brand pl-2 text-success" href="index.php">
 			<strong>Cilengkrang 07</strong>
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">

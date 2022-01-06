@@ -151,11 +151,6 @@
 					?>
 
 					<div class="row grid-body">
-						<!-- <div class="col-12 col-lg-1 text-center">
-							<a href="data_agenda.php?input=<?php echo $row['id']; ?>" class="">
-								<i class="fa fa-file-text-o" aria-hidden="true"></i>
-							</a>
-						</div> -->
 						<div class="col-12 col-lg-2">
 							<?php echo $row['nip']; ?>
 						</div>

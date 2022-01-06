@@ -67,17 +67,17 @@
 			</div>
 
 			<div class="card-body bg-light">
-				<div class="row grid-head d-flex align-items-center">
+				<div class="row grid-head">
 					<div class="col-12 col-lg-2">
 						<strong>Dasar Surat</strong>
 					</div>
-					<div class="col-12 col-lg-3">
+					<div class="col-12 col-lg-2">
 						<strong>Nama</strong>
 					</div>
-					<div class="col-12 col-lg-4">
+					<div class="col-12 col-lg-5">
 						<strong>Kegiatan</strong>
 					</div>
-					<div class="col-12 col-lg-3 text-center">
+					<div class="col-12 col-lg-3 d-flex justify-content-center">
 						<strong>Opsi</strong>
 					</div>
 				</div>
@@ -210,14 +210,14 @@
 						<div class="col-12 col-lg-2">
 							<?php echo $row['dasar_surat']; ?>
 						</div>
-						<div class="col-12 col-lg-3">
+						<div class="col-12 col-lg-2">
 							<?php echo $row['name']; ?>
 						</div>
-						<div class="col-12 col-lg-4">
+						<div class="col-12 col-lg-5">
 							<?php echo $row['kegiatan']; ?>
 						</div>
-						<div class="col-12 col-lg-3 text-center">
-							<a href="data_agenda.php?edit2=<?php echo $row['id']; ?>" class="mr-1">
+						<div class="col-12 col-lg-3 d-flex justify-content-center">
+							<a href="data_agenda.php?edit2=<?php echo $row['id']; ?>" class="">
 								<i class="fa fa-pencil-square-o" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edit"></i> Edit |
 							</a>
 
@@ -250,7 +250,7 @@
 							<!-- Modal Delete #end -->
 
 							<!-- Preview Modal #start -->
-							<a href="" data-toggle="modal" data-target="#cetakSspd<?php echo $row['id']; ?>" class="mr-2">
+							<a href="" data-toggle="modal" data-target="#cetakSspd<?php echo $row['id']; ?>" class="ml-1">
 								<i class="fa fa-print" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Cetak"></i> Print |
 							</a>
 
@@ -281,11 +281,11 @@
 							<!-- Preview Modal #end -->
 
 							<!-- Generate Notulen Modal #start -->
-							<a href="" data-toggle="modal" data-target="#generateNotulen-<?php echo $row['id']; ?>" class="mr-2">
-								<i class="fa fa-plus" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Cetak"></i> Buat Notulen
+							<a href="" data-toggle="modal" data-target="#generateNotulen<?php echo $row['id']; ?>" class="ml-1">
+								<i class="fa fa-plus" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Cetak"></i> Notulen |
 							</a>
 
-							<div class="modal fade bd-example-modal-lg" id="generateNotulen-<?php echo $row['id']; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="generateNotulenLabel" aria-hidden="true">
+							<div class="modal fade bd-example-modal-lg" id="generateNotulen<?php echo $row['id']; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="generateNotulenLabel" aria-hidden="true">
 								<form action="process_asn.php" method="post">
 									<input type="hidden" name="id_agenda" value="<?php echo $row['id']; ?>">
 
@@ -310,7 +310,7 @@
 									</div>
 								</form>
 							</div>
-							<!-- Generate Notulen Modal #end -->							
+							<!-- Generate Notulen Modal #end -->
 						</div>
 					</div>
 				<?php endwhile; ?>

@@ -23,7 +23,7 @@
 	include 'menu.php';
 	?>
 
-	<div class="container-fluid">
+	<div class="container">
 		<br>
 		<div class="card text-center shadow-lg">
 			<div class="card-header bg-success text-white">
@@ -32,7 +32,7 @@
 			<div class="card-body bg-light">
 
 				<div class="row">
-					<div class="col-sm-4">
+					<div class="col-sm-6 mt-2">
 						<div class="card shadow-lg">
 							<div class="card-body">
 								<h5 class="card-title">Data Pegawai</h5>
@@ -42,7 +42,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-4">
+					<div class="col-sm-6 mt-2">
 						<div class="card shadow-lg">
 							<div class="card-body">
 								<h5 class="card-title">Agenda Perjalanan</h5>
@@ -51,7 +51,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-4">
+					<!-- <div class="col-sm-4">
 						<div class="card shadow-lg">
 							<div class="card-body">
 								<h5 class="card-title">Notulen Rapat / Bimtek</h5>
@@ -60,17 +60,15 @@
 								<a href="data_notulen.php" class="btn btn-success">Buat Notulen</a>
 							</div>
 						</div>
-					</div>
+					</div> -->
 
 				</div>
 				<br><br><br><br>
-				<h5 class="card-title">Today Quote</h5>
+				<h5 class="card-title">Evergreen Quote</h5>
 				<blockquote class="card-text">
-					<p class="mb-0">All journeys have secret destinations of which the traveler is unaware.</p>
-					<footer class="blockquote-footer">Martin Buber <cite title="Source Title"></cite></footer>
+					<p class="mb-0">Big things have small beginnigs, enjoy the journey.</p>
+					<footer class="blockquote-footer">anonymous<cite title="Source Title"></cite></footer>
 				</blockquote>
-				<!-- <a href="#" class="btn btn-success">Simpan</a>
-						<a href="#" class="btn btn-dark">Kembali</a> -->
 			</div>
 		</div>
 	</div>
