@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2022 at 05:06 PM
+-- Generation Time: Jan 06, 2022 at 04:47 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -56,7 +56,6 @@ INSERT INTO `data_agenda` (`id`, `dasar_surat`, `lokasi`, `kegiatan`, `tgl_mulai
 (34, 'SUMUR/212/RENDANG', 'Ruang Rapat Dinas Kependudukan', 'Rapat Evaluasi SIAK Terpusat', '2021-12-22', '2021-12-22', '08:00:00', '02:00:00', 'Inal Zainal', 'Ariel Noah', 'Ariel Tatum', 0, 0, 0, 24, '2021-12-26 17:02:13', '2021-12-27 00:02:13'),
 (35, '3665/PROV/256', 'Surakarta', 'Bimbingan Pengelolaan SDM Desa', '2021-12-22', '2021-12-22', '00:00:00', '21:00:00', 'Aku', 'Kamu', 'Dia', 0, 0, 0, 23, '2021-12-26 17:02:13', '2021-12-28 11:15:50'),
 (36, '1029KSDW', 'Surabaya', 'Rapat Kegiatan Honorarium P3K', '2021-12-23', '2021-12-24', '08:00:00', '14:00:00', 'Keanu Alkhalifi', 'Raiden Azzamy', 'Hiddan Alkhairy', 0, 0, 0, 24, '2021-12-26 17:02:13', '2021-12-27 00:02:13'),
-(38, 'TEST:2021/12/27-1221', 'Semarang', 'Piknik', '2021-12-27', '2021-12-28', '10:30:00', '02:30:00', 'upin', 'ipin', 'mail', 0, 0, 0, 27, '2021-12-26 17:02:13', '2021-12-27 00:02:13'),
 (39, '005/1349/PKALD', 'Pusdikter Angkatan Darat Jalan', 'Menghadiri Pelatihan Masa Jabatan Bagi Kepala Desa Terpilih Tahun 2022', '2021-12-28', '2021-12-28', '10:03:00', '02:03:00', 'upin', 'ipin', 'mail', 123456789012345670, 12345678901234561, 123456789012345672, 20, '2021-12-26 17:02:13', '2022-01-05 22:53:44'),
 (40, '005/1349/PKALD/TEST', 'Pusdikter Angkatan Darat Jalan', 'Menghadiri Pelatihan Masa Jabatan Bagi Kepala Desa Terpilih Tahun 2022', '2021-12-27', '2021-12-27', '12:02:00', '16:02:00', 'Charles', 'Michael', 'Duran', 0, 0, 0, 27, '2021-12-26 17:03:00', '2021-12-29 17:32:03');
 
@@ -98,20 +97,18 @@ INSERT INTO `data_asn` (`id`, `name`, `nip`, `tempatlahir`, `tanggallahir`, `gol
 CREATE TABLE `data_notulen` (
   `id` int(11) NOT NULL,
   `isi_notulen` varchar(1000) NOT NULL,
-  `id_agenda` int(11) NOT NULL
+  `id_agenda` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `data_notulen`
 --
 
-INSERT INTO `data_notulen` (`id`, `isi_notulen`, `id_agenda`) VALUES
-(1, 'grewghsehtrshtr', 28),
-(12, 'frewhgerh', 38),
-(13, 'fewgr', 38),
-(14, 'fwgerg', 28),
-(15, 'ewfgggggggweg\r\ndsgegsegse\r\ngesgesesg\r\ngesgeseggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg\r\nsegseg', 35),
-(16, '1. Mengelola brgyufhbuig\r\n2. bswibiegne\r\n3. vfjufngign\r\nTErimagaji', 36);
+INSERT INTO `data_notulen` (`id`, `isi_notulen`, `id_agenda`, `created_at`, `updated_at`) VALUES
+(31, '', 36, '2022-01-06 15:40:27', '2022-01-06 22:40:27'),
+(33, '', 28, '2022-01-06 15:40:55', '2022-01-06 22:40:55');
 
 -- --------------------------------------------------------
 
@@ -174,7 +171,7 @@ ALTER TABLE `data_asn`
 -- AUTO_INCREMENT for table `data_notulen`
 --
 ALTER TABLE `data_notulen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `tes`

@@ -282,7 +282,7 @@
 
 							<!-- Generate Notulen Modal #start -->
 							<a href="" data-toggle="modal" data-target="#generateNotulen<?php echo $row['id']; ?>" class="ml-1">
-								<i class="fa fa-plus" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Cetak"></i> Notulen |
+								<i class="fa fa-plus" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Cetak"></i> Notulen
 							</a>
 
 							<div class="modal fade bd-example-modal-lg" id="generateNotulen<?php echo $row['id']; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="generateNotulenLabel" aria-hidden="true">

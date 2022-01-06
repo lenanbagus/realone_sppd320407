@@ -50,9 +50,11 @@
     // (local) tidak perlu memanggil konfig db
     //$mysqli = new mysqli('localhost', 'root', '', 'cilengkrang') or die(mysqli_error($mysqli));
 
-    $result = $mysqli->query("SELECT * FROM data_agenda 
-    JOIN data_notulen ON data_agenda.id = data_notulen.id_agenda
-    JOIN data_asn ON data_asn.id = data_agenda.id_asn") or die($mysqli->error);
+    // $result = $mysqli->query("SELECT * FROM data_agenda 
+    // JOIN data_notulen ON data_agenda.id = data_notulen.id_agenda
+    // JOIN data_asn ON data_asn.id = data_agenda.id_asn") or die($mysqli->error);
+
+		$result = $mysqli->query("SELECT data_notulen.id, data_notulen.isi_notulen, data_notulen.id_agenda, data_agenda.dasar_surat, data_agenda.lokasi, data_agenda.kegiatan, data_agenda.id_asn, data_asn.name FROM data_notulen JOIN data_agenda ON data_notulen.id_agenda = data_agenda.id JOIN data_asn ON data_agenda.id_asn = data_asn.id ORDER BY data_notulen.created_at DESC") or die($mysqli->error);
     ?>
 
     <div class="container-fluid">
@@ -90,132 +92,9 @@
                 </div>
 
                 <?php while ($row = $result->fetch_assoc()) : ?>
-                    <?php
-                    $hari_mulai = date('l', strtotime($row['tgl_mulai']));
-                    $tanggal_mulai = date('d', strtotime($row['tgl_mulai']));
-                    $bulan_mulai = date('F', strtotime($row['tgl_mulai']));
-                    $tahun_mulai = date('Y', strtotime($row['tgl_mulai']));
-                    $hari_akhir = date('l', strtotime($row['tgl_selesai']));
-                    $tanggal_akhir = date('d', strtotime($row['tgl_selesai']));
-                    $bulan_akhir = date('F', strtotime($row['tgl_selesai']));
-                    $tahun_akhir = date('Y', strtotime($row['tgl_selesai']));
-                    $jam_start = date('H', strtotime($row['jam_mulai']));
-                    $menit_start = date('i', strtotime($row['jam_mulai']));
-                    $jam_end = date('H', strtotime($row['jam_selesai']));
-                    $menit_end = date('i', strtotime($row['jam_selesai']));
-
-                    switch ($hari_mulai) {
-                        case 'Monday':
-                            $hari_mulai = 'Senin';
-                            break;
-                        case 'Tuesday':
-                            $hari_mulai = 'Selasa';
-                            break;
-                        case 'Wednesday':
-                            $hari_mulai = 'Rabu';
-                            break;
-                        case 'Thursday':
-                            $hari_mulai = 'Kamis';
-                            break;
-                        case 'Friday':
-                            $hari_mulai = 'Jum\'at';
-                            break;
-                        case 'Saturday':
-                            $hari_mulai = 'Sabtu';
-                            break;
-                        case 'Sunday':
-                            $hari_mulai = 'Minggu';
-                            break;
-                    }
-
-                    switch ($hari_akhir) {
-                        case 'Monday':
-                            $hari_akhir = 'Senin';
-                            break;
-                        case 'Tuesday':
-                            $hari_akhir = 'Selasa';
-                            break;
-                        case 'Wednesday':
-                            $hari_akhir = 'Rabu';
-                            break;
-                        case 'Thursday':
-                            $hari_akhir = 'Kamis';
-                            break;
-                        case 'Friday':
-                            $hari_akhir = 'Jum\'at';
-                            break;
-                        case 'Saturday':
-                            $hari_akhir = 'Sabtu';
-                            break;
-                        case 'Sunday':
-                            $hari_akhir = 'Minggu';
-                            break;
-                    }
-
-                    switch ($bulan_mulai) {
-                        case 'January':
-                            $bulan_mulai = 'Jan';
-                            break;
-                        case 'February':
-                            $bulan_mulai = 'Feb';
-                            break;
-                        case 'March':
-                            $bulan_mulai = 'Mar';
-                            break;
-                        case 'May':
-                            $bulan_mulai = 'Mei';
-                            break;
-                        case 'June':
-                            $bulan_mulai = 'Jun';
-                            break;
-                        case 'July':
-                            $bulan_mulai = 'Jul';
-                            break;
-                        case 'August':
-                            $bulan_mulai = 'Agus';
-                            break;
-                        case 'October':
-                            $bulan_mulai = 'Okt';
-                            break;
-                        case 'December':
-                            $bulan_mulai = 'Des';
-                            break;
-                    }
-
-                    switch ($bulan_akhir) {
-                        case 'January':
-                            $bulan_akhir = 'Jan';
-                            break;
-                        case 'February':
-                            $bulan_akhir = 'Feb';
-                            break;
-                        case 'March':
-                            $bulan_akhir = 'Mar';
-                            break;
-                        case 'May':
-                            $bulan_akhir = 'Mei';
-                            break;
-                        case 'June':
-                            $bulan_akhir = 'Jun';
-                            break;
-                        case 'July':
-                            $bulan_akhir = 'Jul';
-                            break;
-                        case 'August':
-                            $bulan_akhir = 'Agus';
-                            break;
-                        case 'October':
-                            $bulan_akhir = 'Okt';
-                            break;
-                        case 'December':
-                            $bulan_akhir = 'Des';
-                            break;
-                    }
-                    ?>
-
                     <div class="row grid-body">
                         <div class="col-12 col-lg-2">
-                            <?php echo '800/KEC/' . $row['id'] . '/2022'; ?>
+                            <?php echo $row['dasar_surat']; ?>
                         </div>
                         <div class="col-12 col-lg-2">
                             <?php echo $row['name']; ?>
@@ -232,11 +111,11 @@
                             </a>
 
                             <!-- Modal Delete #start -->
-                            <a href="" data-toggle="modal" data-target="#hapusNotulen<?php echo $row['id']; ?>" class="mr-1">
+                            <a href="" data-toggle="modal" data-target="#hapusNotulen-<?php echo $row['id']; ?>" class="mr-1">
                                 <i class="fa fa-trash-o" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Hapus"></i> Hapus |
                             </a>
 
-                            <div class="modal fade" id="hapusNotulen<?php echo $row['id']; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="hapusNotulenLabel" aria-hidden="true">
+                            <div class="modal fade" id="hapusNotulen-<?php echo $row['id']; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="hapusNotulenLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -260,7 +139,6 @@
                             <!-- Modal Delete #end -->
 
                             <!-- Preview Modal #start -->
-
                             <a href="" data-toggle="modal" data-target="#cetakSspd<?php echo $row['id']; ?>" class="mr-1">
                                 <i class="fa fa-print" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Cetak"></i> Print
                             </a>
