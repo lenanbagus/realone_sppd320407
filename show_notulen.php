@@ -16,6 +16,33 @@
     include 'menu.php';
     ?>
 
+<?php if (isset($_SESSION['message']) && $_SESSION['message'] !== '') : ?>
+		<?php
+		echo '
+					<script type="text/javascript">
+						$(document).ready(function(){
+							let timerInterval
+							Swal.fire({
+								position: "top-end",
+								icon: "success",
+								text: "Data berhasil disimpan.",
+								showConfirmButton: false,
+								timer: 2500,
+								timerProgressBar: true
+							}).then((result) => {
+								/* Read more about handling dismissals below */
+								if (result.dismiss === Swal.DismissReason.timer) {
+									console.log("I was closed by the timer")
+								}
+							})
+						});
+					</script>
+				';
+
+		unset($_SESSION['message']);
+		?>
+	<?php endif ?>
+
     <?php if (isset($_SESSION['message']) && $_SESSION['message'] !== '') : ?>
         <?php
         echo '
@@ -106,9 +133,44 @@
                             <?php echo $row['isi_notulen']; ?>
                         </div>
                         <div class="col-12 col-lg-2 text-center px-0">
-                            <a href="data_notulen.php?edit3=<?php echo $row['id']; ?>" class="mr-1">
-                                <i class="fa fa-pencil-square-o" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Edit"></i> Edit |
-                            </a>
+                            <!-- Edit Notulen Modal #start -->
+														<a href="" data-toggle="modal" data-target="#editNotulen<?php echo $row['id']; ?>" class="ml-1">
+															<i class="fa fa-pencil-square-o" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Cetak"></i> Ubah |
+														</a>
+
+														<div class="modal fade bd-example-modal-lg" id="editNotulen<?php echo $row['id']; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="editNotulenLabel" aria-hidden="true">
+															<form action="process_asn.php" method="post">
+																<input type="hidden" name="id_notulen" value="<?php echo $row['id']; ?>">
+
+																<div class="modal-dialog modal-lg">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<h6 class="modal-title" id="editNotulenLabel">
+																				<strong><?php echo $row['kegiatan']; ?></strong>
+																			</h6>
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																				<span aria-hidden="true">&times;</span>
+																			</button>
+																		</div>
+																		<div class="modal-body text-left">
+																			<div class="row my-3">
+																				<div class="col-3">
+																					Isi Notulen
+																				</div>
+																				<div class="col-9 pl-0">
+																					<textarea class="form-control" rows="5" id="isi_notulen" name="isi_notulen" value="<?php echo $row['isi_notulen']; ?>"><?php echo $row['isi_notulen']; ?></textarea>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="modal-footer">
+																			<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+																			<button class="btn btn-primary" type="submit" name="edit3">Ubah</button>
+																		</div>
+																	</div>
+																</div>
+															</form>
+														</div>
+														<!-- Edit Notulen Modal #end -->
 
                             <!-- Modal Delete #start -->
                             <a href="" data-toggle="modal" data-target="#hapusNotulen-<?php echo $row['id']; ?>" class="mr-1">
@@ -171,13 +233,6 @@
                         </div>
                     </div>
                 <?php endwhile; ?>
-
-                <div class="row justify-content-end">
-                    <div class="mt-5 mb-2">
-                        <a href="data_notulen.php" class="btn btn-success btn-sm">Tambah Notulen Kegiatan</a>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>

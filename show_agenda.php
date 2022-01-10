@@ -286,7 +286,7 @@
 							</a>
 
 							<div class="modal fade bd-example-modal-lg" id="generateNotulen<?php echo $row['id']; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="generateNotulenLabel" aria-hidden="true">
-								<form action="process_asn.php" method="post">
+								<form action="process_asn.php" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="id_agenda" value="<?php echo $row['id']; ?>">
 
 									<div class="modal-dialog modal-lg">

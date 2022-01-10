@@ -28,8 +28,13 @@ $nip_a = '';
 $nip_b = '';
 $nip_c = '';
 $id_asn = '';
+
+$id_notulen = '0';
 $id_agenda = '';
 $isi_notulen = '';
+$update3 = false;
+
+$fileUploadMessage = '';
 
 if (isset($_POST['save'])) {
     $name = $_POST['name'];
@@ -224,28 +229,29 @@ if (isset($_POST['save3'])) {
 if (isset($_GET['delete3'])) {
     $id = $_GET['delete3'];
     $mysqli->query("DELETE FROM data_notulen WHERE id=$id") or die($mysqli->error);
+    $_SESSION['message'] = "Record has been updated!";
+    $_SESSION['msg_type'] = "warning";
     header("location: show_notulen.php");
 }
 
 if (isset($_GET['edit3'])) {
-    $id_agenda = $_GET['edit3'];
+    $id_notulen = $_GET['edit3'];
     $update = true;
-    $result = $mysqli->query("SELECT * FROM data_notulen WHERE id=$id") or die($mysqli->error);
+    $result = $mysqli->query("SELECT * FROM data_notulen WHERE id=$id_notulen") or die($mysqli->error);
     if (count(array($result)) == 1) {
         $row = $result->fetch_array();
         $isi_notulen = $row['isi_notulen'];
-        $id_agenda = $row['id_agenda'];
     }
 }
 
 if (isset($_POST['update3'])) {
+    $id_notulen = $_POST['id_notulen'];
     $isi_notulen = $_POST['isi_notulen'];
-    $id_agenda = $_POST['id_agenda'];
 
-    $mysqli->query("UPDATE data_notulen SET 'isi_notulen' = '$isi_notulen','id_agenda'='$id_agenda WHERE 'data_notulen'.'id' = '$id' ") or die($mysqli->error);
+    $mysqli->query("UPDATE data_notulen SET 'isi_notulen' = '$isi_notulen' WHERE 'data_notulen'.'id' = '$id_notulen' ") or die($mysqli->error);
     $_SESSION['message'] = "Record has been updated!";
     $_SESSION['msg_type'] = "warning";
-    header("location: show_agenda.php");
+    header("location: show_notulen.php");
 }
 
 
@@ -253,8 +259,67 @@ if (isset($_POST['update3'])) {
 if (isset($_POST['generate_notulen'])) {
     $id_agenda = $_POST['id_agenda'];
     $isi_notulen = $_POST['isi_notulen'];
-    
-    $mysqli->query("INSERT INTO data_notulen (isi_notulen,id_agenda) VALUES ('$isi_notulen','$id_agenda')") or die($mysqli->error);
 
-    header("location: show_notulen.php");
+    // upload files -- start
+    $target_dir = "files_uploaded/";
+    $file_name = basename($_FILES["fileToUpload"]["name"]);
+    $target_file = $target_dir . $file_name;
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+
+    if ($_FILES["fileToUpload"]["size"] > 500000) {
+        // Check file size
+        $fileUploadMessage = "Sorry, your file is too large.";
+        $uploadOk = 0;
+        $_SESSION['message'] = $fileUploadMessage;
+        $_SESSION['msg_type'] = "error";
+        header("location: show_agenda.php");
+        exit();
+    } elseif ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "pdf" ) {
+        // Allow certain file formats
+        $fileUploadMessage = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        $uploadOk = 0;
+        $_SESSION['message'] = $fileUploadMessage;
+        $_SESSION['msg_type'] = "error";
+        header("location: show_agenda.php");
+        exit();
+    } elseif ($check !== false) {
+        // if everything is ok, try to upload file
+        $fileUploadMessage = "File is an image - " . $check["mime"] . ".";
+        $uploadOk = 1;
+
+        $mysqli->query("INSERT INTO data_notulen (isi_notulen, id_agenda, file_name) VALUES ('$isi_notulen', '$id_agenda', '$file_name')") or die($mysqli->error);
+        
+        $_SESSION['message'] = $fileUploadMessage;
+        $_SESSION['msg_type'] = "success";
+        header("location: show_notulen.php");
+        exit();
+    } else {
+        if ($uploadOk == 0) {
+            // Check if $uploadOk is set to 0 by an error
+            $fileUploadMessage = "Sorry, your file was not uploaded.";
+            $_SESSION['message'] = $fileUploadMessage;
+            $_SESSION['msg_type'] = "error";
+            header("location: show_agenda.php");
+            exit();
+        } else {
+            // if everything is ok, try to upload file
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                $fileUploadMessage = "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
+                $_SESSION['message'] = $fileUploadMessage;
+                $_SESSION['msg_type'] = "success";
+                header("location: show_notulen.php");
+                exit();
+            } else {
+                $fileUploadMessage = "Sorry, there was an error uploading your file.";
+                $_SESSION['message'] = $fileUploadMessage;
+                $_SESSION['msg_type'] = "error";
+                header("location: show_agenda.php");
+                exit();
+            }
+        }   
+    }
+    // upload files -- end
 }

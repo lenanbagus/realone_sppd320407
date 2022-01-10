@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 06, 2022 at 04:47 PM
+-- Generation Time: Jan 10, 2022 at 02:52 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -57,7 +57,8 @@ INSERT INTO `data_agenda` (`id`, `dasar_surat`, `lokasi`, `kegiatan`, `tgl_mulai
 (35, '3665/PROV/256', 'Surakarta', 'Bimbingan Pengelolaan SDM Desa', '2021-12-22', '2021-12-22', '00:00:00', '21:00:00', 'Aku', 'Kamu', 'Dia', 0, 0, 0, 23, '2021-12-26 17:02:13', '2021-12-28 11:15:50'),
 (36, '1029KSDW', 'Surabaya', 'Rapat Kegiatan Honorarium P3K', '2021-12-23', '2021-12-24', '08:00:00', '14:00:00', 'Keanu Alkhalifi', 'Raiden Azzamy', 'Hiddan Alkhairy', 0, 0, 0, 24, '2021-12-26 17:02:13', '2021-12-27 00:02:13'),
 (39, '005/1349/PKALD', 'Pusdikter Angkatan Darat Jalan', 'Menghadiri Pelatihan Masa Jabatan Bagi Kepala Desa Terpilih Tahun 2022', '2021-12-28', '2021-12-28', '10:03:00', '02:03:00', 'upin', 'ipin', 'mail', 123456789012345670, 12345678901234561, 123456789012345672, 20, '2021-12-26 17:02:13', '2022-01-05 22:53:44'),
-(40, '005/1349/PKALD/TEST', 'Pusdikter Angkatan Darat Jalan', 'Menghadiri Pelatihan Masa Jabatan Bagi Kepala Desa Terpilih Tahun 2022', '2021-12-27', '2021-12-27', '12:02:00', '16:02:00', 'Charles', 'Michael', 'Duran', 0, 0, 0, 27, '2021-12-26 17:03:00', '2021-12-29 17:32:03');
+(40, '005/1349/PKALD/TEST', 'Pusdikter Angkatan Darat Jalan', 'Menghadiri Pelatihan Masa Jabatan Bagi Kepala Desa Terpilih Tahun 2022', '2021-12-27', '2021-12-27', '12:02:00', '16:02:00', 'Charles', 'Michael', 'Duran', 0, 0, 0, 27, '2021-12-26 17:03:00', '2021-12-29 17:32:03'),
+(44, '2022/TEST-01/06', 'Majalengka', 'Ah teuing...', '2022-01-05', '2022-01-07', '08:00:00', '00:00:00', 'upin', 'ipin', 'mail', 123456789012345670, 12345678901234561, 123456789012345672, 30, '2022-01-06 16:08:28', '2022-01-06 23:08:28');
 
 -- --------------------------------------------------------
 
@@ -98,6 +99,7 @@ CREATE TABLE `data_notulen` (
   `id` int(11) NOT NULL,
   `isi_notulen` varchar(1000) NOT NULL,
   `id_agenda` int(11) NOT NULL,
+  `file_name` varchar(50) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -106,9 +108,20 @@ CREATE TABLE `data_notulen` (
 -- Dumping data for table `data_notulen`
 --
 
-INSERT INTO `data_notulen` (`id`, `isi_notulen`, `id_agenda`, `created_at`, `updated_at`) VALUES
-(31, '', 36, '2022-01-06 15:40:27', '2022-01-06 22:40:27'),
-(33, '', 28, '2022-01-06 15:40:55', '2022-01-06 22:40:55');
+INSERT INTO `data_notulen` (`id`, `isi_notulen`, `id_agenda`, `file_name`, `created_at`, `updated_at`) VALUES
+(36, 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters', 40, '', '2022-01-09 12:19:48', '2022-01-09 19:19:48'),
+(37, 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.', 34, '', '2022-01-09 12:20:24', '2022-01-09 19:20:24'),
+(38, 'The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.', 28, '', '2022-01-09 12:21:11', '2022-01-09 19:21:11'),
+(43, 'sambil upload', 44, '', '2022-01-09 13:58:59', '2022-01-09 20:58:59'),
+(44, 'adsad', 39, '', '2022-01-09 14:00:36', '2022-01-09 21:00:36'),
+(45, 'sdadasd', 39, '', '2022-01-09 14:00:52', '2022-01-09 21:00:52'),
+(46, 'new 1', 28, '', '2022-01-09 14:03:47', '2022-01-09 21:03:47'),
+(47, 'new 2', 40, '', '2022-01-09 14:04:57', '2022-01-09 21:04:57'),
+(48, 'new 3', 34, 'Picture1.png', '2022-01-09 14:06:08', '2022-01-09 21:06:08'),
+(49, 'new 4', 35, 'microweber.png', '2022-01-09 14:32:14', '2022-01-09 21:32:14'),
+(50, 'new 5', 40, 'microweber.png', '2022-01-09 14:34:43', '2022-01-09 21:34:43'),
+(51, 'new 6', 44, 'seminar_1.jpeg', '2022-01-09 14:36:39', '2022-01-09 21:36:39'),
+(52, 'new 7', 40, 'logo_usb_ypkp-removebg-preview.png', '2022-01-09 15:43:36', '2022-01-09 22:43:36');
 
 -- --------------------------------------------------------
 
@@ -159,7 +172,7 @@ ALTER TABLE `tes`
 -- AUTO_INCREMENT for table `data_agenda`
 --
 ALTER TABLE `data_agenda`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `data_asn`
@@ -171,7 +184,7 @@ ALTER TABLE `data_asn`
 -- AUTO_INCREMENT for table `data_notulen`
 --
 ALTER TABLE `data_notulen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `tes`
