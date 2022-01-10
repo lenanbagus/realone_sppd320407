@@ -220,7 +220,7 @@ if (isset($_POST['save3'])) {
     echo $id_agenda;
     $isi_notulen = $_POST['isi_notulen'];
     $id_agenda = $_POST['id_agenda'];
-    
+
     $mysqli->query("INSERT INTO data_notulen (isi_notulen,id_agenda) VALUES ('$isi_notulen','$id_agenda')") or die($mysqli->error);
 
     header("location: show_notulen.php");
@@ -247,8 +247,7 @@ if (isset($_GET['edit3'])) {
 if (isset($_POST['update3'])) {
     $id_notulen = $_POST['id_notulen'];
     $isi_notulen = $_POST['isi_notulen'];
-
-    $mysqli->query("UPDATE data_notulen SET 'isi_notulen' = '$isi_notulen' WHERE 'data_notulen'.'id' = '$id_notulen' ") or die($mysqli->error);
+    $mysqli->query("UPDATE `data_notulen` SET `isi_notulen` = '$isi_notulen' WHERE `data_notulen`.`id` = '$id_notulen' ") or die($mysqli->error);
     $_SESSION['message'] = "Record has been updated!";
     $_SESSION['msg_type'] = "warning";
     header("location: show_notulen.php");
