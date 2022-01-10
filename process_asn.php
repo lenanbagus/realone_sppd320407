@@ -256,10 +256,55 @@ if (isset($_POST['update3'])) {
 
 // Generate notulen
 if (isset($_POST['generate_notulen'])) {
-    $id_agenda = $_POST['id_agenda'];
-    $isi_notulen = $_POST['isi_notulen'];
 
-    $mysqli->query("INSERT INTO data_notulen (isi_notulen,id_agenda) VALUES ('$isi_notulen','$id_agenda')") or die($mysqli->error);
+    // var_dump($_POST);
+    // var_dump($_FILES);
+    // die;
+
+    $fileToUpload = upload();
+    if (!$fileToUpload) {
+        return false;
+    }
+
+    // $id_agenda = $_POST['id_agenda'];
+    // $isi_notulen = $_POST['isi_notulen'];
+    // $pname = rand(1000, 10000) . '-' . $_FILES['file']['name'];
+    // $tname = $_FILES['files']['tmp_name'];
+    // $uploads_dir = '/upload_pic';
+    // move_uploaded_file($tname, $uploads_dir, $pname);
+
+
+    // $mysqli->query("INSERT INTO data_notulen VALUES ('','$isi_notulen','$id_agenda','$fileToUpload','','')") or die($mysqli->error);
+    $mysqli->query("INSERT INTO data_notulen (isi_notulen,file_name) VALUES ('$isi_notulen','$fileToUpload')") or die($mysqli->error);
 
     header("location: show_notulen.php");
+}
+
+function upload()
+{
+    $fileName = $_FILES['fileToUpload']['name'];
+    $fileSize = $_FILES['fileToUpload']['size'];
+    $fileError = $_FILES['fileToUpload']['error'];
+    $fileTemp = $_FILES['fileToUpload']['tmp_name'];
+
+    if ($fileError === 4) {
+        echo " <script>
+        alert ('tidak ada file untuk di upload');
+        </script>";
+        return false;
+    }
+
+    $accepted_image = ['jpg', 'jpeg', 'png'];
+    $ext_image = explode('.', '$fileName');
+    $ext_image = strtolower(end($ext_image));
+
+    // if (!in_array($ext_image, $accepted_image)) {
+    //     echo " <script>
+    //     alert ('file bukan format image');
+    //     </script>";
+    //     return false;
+    // }
+
+    move_uploaded_file($fileTemp, 'upload_pic/' . $fileName);
+    return $fileName;
 }
