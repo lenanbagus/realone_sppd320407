@@ -126,14 +126,14 @@ $pdf->SetFont('Arial', '', 10);
 $pdf->Cell(30, 4, 'Jl Pasirjati No 03, Jatiendah 40616 Telp 750 6363', 0, 2, 'C');
 $pdf->Cell(-15);
 $pdf->SetFont('Arial', 'B', 18);
-$pdf->Cell(30, 5, '________________________________________________', 0, 2, 'C');
-$pdf->Ln(5);
+$pdf->Cell(30, 2, '________________________________________________', 0, 2, 'C');
+$pdf->Ln(3);
 $pdf->Cell(80);
 $pdf->SetFont('Arial', 'B', '12');
 $pdf->Cell(30, 10, 'SURAT TUGAS', 0, 2, 'C');
 $pdf->Ln(1);
 $pdf->Cell(80);
-$pdf->SetFont('Arial', 'B', '11');
+$pdf->SetFont('Arial', '', '11');
 $pdf->Cell(30, 0, 'Nomor : 800/00' . $row['id'] . '/Kec/2022', 0, 2, 'C');
 $pdf->Ln(10);
 
@@ -143,7 +143,7 @@ $pdf->Cell(35, 7, 'Dasar Surat', 0, 0, 'L');
 $pdf->Cell(50, 7, ': ' . $row['dasar_surat'] . ' ', 0, 1, 'L');
 
 $pdf->Cell(9);
-$pdf->Cell(30, 7, 'Atas dasar diatas , dengan ini Camat Cilengkrang Kabupaten Bandung menugaskan kepada :', 0, 2, 'L');
+$pdf->Cell(30, 7, 'Atas dasar diatas, dengan ini Camat Cilengkrang Kabupaten Bandung menugaskan kepada :', 0, 2, 'L');
 $pdf->Ln(3);
 $pdf->Cell(9);
 $pdf->Cell(35, 7, 'Nama', 0, 0, 'L');
@@ -177,7 +177,7 @@ $pdf->Cell(30, 7, ': ' . $tanggal_akhir . ' ' . $bulan_akhir . ' ' . $tahun_akhi
 
 $pdf->Cell(9);
 $pdf->Cell(35, 7, 'Waktu', 0, 0, 'L');
-$pdf->Cell(30, 7, ': ' . $row['jam_mulai'] . ' - ' . $row['jam_selesai'] . ' ', 0, 1, 'L');
+$pdf->Cell(30, 7, ': ' . $jam_start . ' ' . $menit_start . ' - ' . $jam_end . ' ' . $menit_end . ' WIB', 0, 1, 'L');
 
 $pdf->Cell(9);
 $pdf->Cell(35, 7, 'Lokasi', 0, 0, 'L');
@@ -185,16 +185,16 @@ $pdf->Cell(30, 7, ': ' . $row['lokasi'] . ' ', 0, 1, 'L');
 
 $pdf->Ln(3);
 $pdf->Cell(9);
-$pdf->MultiCell(171, 7, '         Demikian Surat Tugas ini agar dilaksanakan dengan penuh rasa tanggungjawab dan melaporkan hasilnya kepada pimpinan.', '', 'J', '');
+$pdf->MultiCell(171, 7, '        Demikian Surat Tugas ini agar dilaksanakan dengan penuh rasa tanggungjawab dan melaporkan hasilnya kepada pimpinan.', '', 'J', '');
 
 $pdf->Ln(10);
-$pdf->Cell(112);
-$pdf->Cell(30, 7, 'Cilengkrang,', 0, 0, 'C');
-$pdf->Cell(30, 7, '' . $createddate . ' ' . $bulan_mulai . ' ' . $tahun_mulai . '', 0, 1, 'C');
+$pdf->Cell(117);
+$pdf->Cell(25, 6, 'Cilengkrang, ', 0, 0, 'C');
+$pdf->Cell(25, 6, ' ' . $tanggal_mulai . ' ' . $bulan_mulai . ' ' . $tahun_mulai . '', 0, 1, 'C');
 $pdf->Cell(130);
-$pdf->Cell(30, 7, 'Camat Cilengkrang', 0, 2, 'C');
+$pdf->Cell(30, 6, 'Camat Cilengkrang', 0, 2, 'C');
 
-$pdf->Image('image/ttd.png', 146, 182, 19);
+$pdf->Image('image/ttd.png', 146, 177, 19);
 
 $pdf->Cell(30, 10, '', 0, 2, 'C');
 $pdf->Cell(30, 10, '', 0, 2, 'C');
@@ -220,7 +220,7 @@ $pdf->SetFont('Arial', '', 10);
 $pdf->Cell(30, 4, 'Jl Pasirjati No 03, Jatiendah 40616 Telp 750 6363', 0, 2, 'C');
 $pdf->Cell(-15);
 $pdf->SetFont('Arial', 'B', 18);
-$pdf->Cell(30, 5, '________________________________________________', 0, 2, 'C');
+$pdf->Cell(30, 1, '________________________________________________', 0, 2, 'C');
 $pdf->Ln(5);
 $pdf->Cell(80);
 $pdf->SetFont('Arial', 'B', '12');
@@ -306,17 +306,17 @@ $pdf->Cell(48, 7, 'Keterangan', 'R,B', 1, 'C');
 $pdf->Cell(9);
 $pdf->Cell(5, 7, '', 'L', 0, 'L');
 $pdf->Cell(65, 7, '1. ' . $row['pengikut_a'] . '', 'R', 0, 'L');
-$pdf->Cell(53, 7, '', 'R', 0, 'C');
+$pdf->Cell(53, 7, '' . $row['nip_a'] . '', 'R', 0, 'C');
 $pdf->Cell(48, 7, '', 'R', 1, 'C');
 $pdf->Cell(9);
 $pdf->Cell(5, 7, '', 'L', 0, 'L');
 $pdf->Cell(65, 7, '2. ' . $row['pengikut_b'] . '', 'R', 0, 'L');
-$pdf->Cell(53, 7, '', 'R', 0, 'C');
+$pdf->Cell(53, 7, '' . $row['nip_b'] . '', 'R', 0, 'C');
 $pdf->Cell(48, 7, '', 'R', 1, 'C');
 $pdf->Cell(9);
 $pdf->Cell(5, 7, '', 'L,B', 0, 'L');
 $pdf->Cell(65, 7, '3. ' . $row['pengikut_c'] . '', 'B,R', 0, 'L');
-$pdf->Cell(53, 7, '', 'B,R', 0, 'C');
+$pdf->Cell(53, 7, '' . $row['nip_c'] . '', 'B,R', 0, 'C');
 $pdf->Cell(48, 7, '', 'B,R', 1, 'C');
 
 $pdf->Cell(9);
@@ -345,21 +345,21 @@ $pdf->Cell(30, 6, 'Kecamatan Cilengkrang', 0, 1, 'L');
 $pdf->Cell(100);
 $pdf->Cell(25, 6, 'Pada Tanggal', 0, 0, 'L');
 $pdf->Cell(10, 6, ':', 0, 0, 'L');
-$pdf->Cell(30, 6, '' . $createddate . ' ' . $bulan_mulai . ' ' . $tahun_mulai . '', 0, 1, 'L');
+$pdf->Cell(30, 6, '' . $tanggal_mulai . ' ' . $bulan_mulai . ' ' . $tahun_mulai . '', 0, 1, 'L');
 $pdf->Ln(5);
 
 $pdf->Cell(122);
 $pdf->Cell(30, 6, 'Pengguna Anggaran / Kuasa Pengguna Anggaran', 0, 2, 'C');
 $pdf->Ln(20);
 $pdf->Cell(122);
-$pdf->Image('image/ttd.png', 137, 247, 19);
+$pdf->Image('image/ttd.png', 137, 245, 19);
 $pdf->SetFont('Arial', 'B', '10');
 $pdf->Cell(30, 1, 'Mohamad Dani, SH., MM.', 0, 2, 'C');
 $pdf->Cell(30, 2, '______________________', 0, 2, 'C');
 $pdf->SetFont('Arial', 'I', '10');
 $pdf->Cell(30, 6, 'NIP. 197110232009011001', 0, 2, 'C');
 
-$pdf->Image('image/lock.jpg', 12, 275, 150);
+$pdf->Image('image/lock.jpg', 12, 272, 150);
 
 
 
@@ -369,23 +369,23 @@ $pdf->AddPage();
 $pdf->SetFont('Arial', '', '9');
 
 $pdf->Cell(80);
-$pdf->Cell(35, 6, 'Berangkat Dari', 0, 0, 'L');
-$pdf->Cell(2, 6, ':', 0, 0, 'C');
-$pdf->Cell(63, 6, 'Kecamatan Cilengkrang', 0, 1, 'L');
+$pdf->Cell(35, 5, 'Berangkat Dari', 0, 0, 'L');
+$pdf->Cell(2, 5, ':', 0, 0, 'C');
+$pdf->Cell(63, 5, 'Kecamatan Cilengkrang', 0, 1, 'L');
 
 $pdf->Cell(80);
-$pdf->Cell(35, 6, '(tempat kedudukan)', 0, 0, 'L');
-$pdf->Cell(2, 6, '', 0, 0, 'C');
-$pdf->Cell(63, 6, '', 0, 1, 'L');
+$pdf->Cell(35, 5, '(tempat kedudukan)', 0, 0, 'L');
+$pdf->Cell(2, 5, '', 0, 0, 'C');
+$pdf->Cell(63, 5, '', 0, 1, 'L');
 
 $pdf->Cell(80);
-$pdf->Cell(35, 6, 'Ke', 0, 0, 'L');
-$pdf->Cell(2, 6, ':', 0, 0, 'C');
-$pdf->Cell(63, 6, '' . $row['lokasi'] . '', 0, 1, 'L');
+$pdf->Cell(35, 5, 'Ke', 0, 0, 'L');
+$pdf->Cell(2, 5, ':', 0, 0, 'C');
+$pdf->Cell(63, 5, '' . $row['lokasi'] . '', 0, 1, 'L');
 
 $pdf->Cell(80);
 $pdf->SetFont('Arial', 'B', '10');
-$pdf->Cell(100, 6, 'Pengguna Anggaran / Kuasa Pengguna Anggaran', 0, 1, 'C');
+$pdf->Cell(100, 8, 'Pengguna Anggaran / Kuasa Pengguna Anggaran', 0, 1, 'C');
 $pdf->Ln(15);
 $pdf->Cell(80);
 $pdf->SetFont('Arial', 'B', '10');
@@ -407,7 +407,8 @@ $pdf->Cell(56, 6, '' . $row['lokasi'] . '', 'T,R', 1, 'L');
 $pdf->Cell(9);
 $pdf->Cell(5, 2, '', 'R', 0, 'C');
 $pdf->Cell(30, 2, '', '', 0, 'L');
-$pdf->Cell(50, 2, '', '', 1, 'L');
+$pdf->Cell(50, 2, '', '', 0, 'L');
+$pdf->Cell(86, 2, '', 'R', 1, 'L');
 $pdf->Cell(9);
 // $pdf->Cell(30, 2, '', '', 0, 'L');
 // $pdf->Cell(50, 2, '', 'R', 1, 'L');
@@ -416,7 +417,7 @@ $pdf->Cell(5, 6, '', '', 0, 'C');
 $pdf->Cell(30, 6, 'Pada Tanggal', 'L', 0, 'L');
 $pdf->Cell(50, 6, '' . $tanggal_mulai . ' ' . $bulan_mulai . ' ' . $tahun_mulai . '', 0, 0, 'L');
 $pdf->Cell(30, 6, 'Pada Tanggal', 0, 0, 'L');
-$pdf->Cell(56, 6, '' . $tanggal_akhir . ' ' . $bulan_akhir . ' ' . $tahun_akhir . '', 'R', 1, 'L');
+$pdf->Cell(56, 6, '' . $tanggal_mulai . ' ' . $bulan_mulai . ' ' . $tahun_mulai . '', 'R', 1, 'L');
 $pdf->Cell(9);
 $pdf->Cell(5, 17, '', '', 0, 'C');
 $pdf->Cell(30, 17, '', 'L', 0, 'L');
@@ -514,15 +515,15 @@ $pdf->Cell(83, 6, 'Pengguna Anggaran / Kuasa Pengguna Anggaran', 'L', 0, 'C');
 $pdf->Cell(83, 6, 'Pengguna Anggaran / Kuasa Pengguna Anggaran', 'R', 1, 'C');
 $pdf->Cell(9);
 $pdf->Cell(5, 6, '', '', 0, 'C');
-$pdf->Cell(170, 20, '', 'L,R', 1, 'C');
+$pdf->Cell(166, 20, '', 'L,R', 1, 'C');
 
 $pdf->SetFont('Arial', 'B', '10');
 $pdf->Cell(14);
 $pdf->Cell(83, 1, 'Mohammad Dani, SH., MM.', 'L', 0, 'C');
 $pdf->Cell(83, 1, 'Mohammad Dani, SH., MM.', 'R', 1, 'C');
-$pdf->Image('image/ttd.png', 131, 33, 15);
-$pdf->Image('image/ttd.png', 138, 209, 19);
-$pdf->Image('image/ttd.png', 55, 209, 19);
+$pdf->Image('image/ttd.png', 131, 31, 16);
+$pdf->Image('image/ttd.png', 138, 208, 19);
+$pdf->Image('image/ttd.png', 55, 208, 19);
 $pdf->Cell(14);
 $pdf->Cell(83, 2, '_________________________', 'L', 0, 'C');
 $pdf->Cell(83, 2, '_________________________', 'R', 1, 'C');
