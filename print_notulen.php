@@ -189,8 +189,8 @@ $pdf->SetFont('Arial', '', '10');
 $pdf->Cell(10);
 $pdf->Cell(25, 40, 'Foto Kegiatan', 0, 0, 'L');
 $pdf->Cell(7, 40, ':', 0, 1, 'L');
-$pdf->Image('image/tes_foto.jpg', 53, 113, 40);
-$pdf->Image('image/tes_foto.jpg', 100, 113, 40);
+// $pdf->Image('image/tes_foto.jpg', 53, 113, 40);
+// $pdf->Image('image/tes_foto.jpg', 100, 113, 40);
 
 $pdf->SetFont('Arial', '', '10');
 $pdf->Cell(10);
