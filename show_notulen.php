@@ -217,12 +217,12 @@
 											</button>
 										</div>
 										<div class="modal-body text-left">
-											<?php include 'preview.php'; ?>
+											<?php include 'preview_notulen.php'; ?>
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
 											<!-- <button type="button" class="btn btn-primary btn-sm">Cetak SPPD</button> -->
-											<a href="print_pdf.php?id=<?php echo $row['id']; ?>" target="blank" class="btn btn-primary btn-action-custom" type="button">
+											<a href="print_notulen.php?id=<?php echo $row['id']; ?>" target="blank" class="btn btn-primary btn-action-custom" type="button">
 												Cetak Surat Tugas
 											</a>
 										</div>

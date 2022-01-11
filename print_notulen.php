@@ -4,8 +4,8 @@ require_once 'process_asn.php';
 
 $notulen_id = $_GET["id"];
 
-$detail_notulen = $mysqli->query("SELECT * FROM data_agenda INNER JOIN data_agenda ON data_asn.id = data_agenda.id_asn WHERE data_agenda.id=$sppd_id") or die($mysqli->error);
-$row = mysqli_fetch_array($detail_notulen);
+// $detail_notulen = $mysqli->query("SELECT * FROM data_agenda INNER JOIN data_agenda ON data_asn.id = data_agenda.id_asn WHERE data_agenda.id=$sppd_id") or die($mysqli->error);
+// $row = mysqli_fetch_array($detail_notulen);
 
 class PDF extends FPDF
 {

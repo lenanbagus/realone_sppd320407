@@ -11,6 +11,6 @@
     Unggah Foto Kegiatan
   </div>
   <div class="col-9 pl-0">
-    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="file" name="upload" id="upload">
   </div>
 </div>
