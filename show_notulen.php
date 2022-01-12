@@ -81,7 +81,7 @@
 	// JOIN data_notulen ON data_agenda.id = data_notulen.id_agenda
 	// JOIN data_asn ON data_asn.id = data_agenda.id_asn") or die($mysqli->error);
 
-	$result = $mysqli->query("SELECT data_notulen.id, data_notulen.isi_notulen, data_notulen.id_agenda, data_agenda.dasar_surat, data_agenda.lokasi, data_agenda.kegiatan, data_agenda.id_asn, data_asn.name FROM data_notulen JOIN data_agenda ON data_notulen.id_agenda = data_agenda.id JOIN data_asn ON data_agenda.id_asn = data_asn.id ORDER BY data_notulen.created_at DESC") or die($mysqli->error);
+	$result = $mysqli->query("SELECT data_notulen.id, data_notulen.isi_notulen, data_notulen.id_agenda, data_notulen.file_name, data_agenda.dasar_surat, data_agenda.lokasi, data_agenda.kegiatan, data_agenda.id_asn, data_asn.name FROM data_notulen JOIN data_agenda ON data_notulen.id_agenda = data_agenda.id JOIN data_asn ON data_agenda.id_asn = data_asn.id ORDER BY data_notulen.created_at DESC") or die($mysqli->error);
 	?>
 
 	<div class="container-fluid">
@@ -139,7 +139,7 @@
 							</a>
 
 							<div class="modal fade bd-example-modal-lg" id="editNotulen<?php echo $row['id']; ?>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="editNotulenLabel" aria-hidden="true">
-								<form action="process_asn.php" method="post">
+								<form action="process_asn.php" method="post" enctype="multipart/form-data">
 									<input type="hidden" name="id_notulen" value="<?php echo $row['id']; ?>">
 
 									<div class="modal-dialog modal-lg">
@@ -155,10 +155,28 @@
 											<div class="modal-body text-left">
 												<div class="row my-3">
 													<div class="col-3">
-														Isi Notulen
+														Isi notulen
 													</div>
 													<div class="col-9 pl-0">
 														<textarea class="form-control" rows="5" id="isi_notulen" name="isi_notulen" value="<?php echo $row['isi_notulen']; ?>"><?php echo $row['isi_notulen']; ?></textarea>
+													</div>
+												</div>
+												<div class="row my-3">
+													<div class="col-3">
+														Foto kegiatan yang sudah diunggah
+													</div>
+													<div class="col-9 pl-0">
+														<img src="<?php echo "upload_pic/".$row['file_name']; ?>" style="max-width:50%; max-height:100%;">
+													</div>
+												</div>
+												<hr>
+												<div class="row my-3">
+													<div class="col-3">
+														Ubah dan Unggah foto kegiatan
+													</div>
+													<div class="col-9 pl-0">
+														<input type="file" name="editAndUploadFile" id="editAndUploadFile">
+														<div class="mt-2" style="font-style: italic;">Hanya format file .jpg .png .jpeg yang dapat diunggah dengan ukuran maks. 5mb</div>
 													</div>
 												</div>
 											</div>

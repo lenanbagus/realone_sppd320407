@@ -247,26 +247,95 @@ if (isset($_GET['edit3'])) {
 if (isset($_POST['update3'])) {
     $id_notulen = $_POST['id_notulen'];
     $isi_notulen = $_POST['isi_notulen'];
-    $mysqli->query("UPDATE `data_notulen` SET `isi_notulen` = '$isi_notulen' WHERE `data_notulen`.`id` = '$id_notulen' ") or die($mysqli->error);
+
+    $target_dir = "upload_pic/";
+    $target_file = $target_dir . basename($_FILES["editAndUploadFile"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    $file_name = htmlspecialchars( basename( $_FILES["editAndUploadFile"]["name"]));
+
+    $check = getimagesize($_FILES["editAndUploadFile"]["tmp_name"]);
+    if($check !== false) {
+        echo "File berbentuk gambar - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File bukan gambar.";
+        $uploadOk = 0;
+    }
+
+    // Check file size
+    if ($_FILES["editAndUploadFile"]["size"] > 1000000) {
+        echo "Maaf, file yang diunggah memiliki ukuran yang besar.";
+        $uploadOk = 0;
+    }
+    
+    // Allow certain file formats
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+        echo "Maaf, file yang diunggah harus bertipe .jpg .png .jpeg.";
+        $uploadOk = 0;
+    }
+    
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Oops. File gagal diunggah, cobalah kembali beberapa saat lagi.";
+    // if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["editAndUploadFile"]["tmp_name"], $target_file)) {
+        echo "File ". $file_name . " berhasil diunggah.";
+        $mysqli->query("UPDATE `data_notulen` SET `isi_notulen` = '$isi_notulen', `file_name` = '$file_name' WHERE `data_notulen`.`id` = '$id_notulen' ") or die($mysqli->error);
+        header("location: show_notulen.php");
+        } else {
+        echo "Maaf, terdapat kesalahan dalam mengunggah file.";
+        }
+    }
+
     $_SESSION['message'] = "Record has been updated!";
     $_SESSION['msg_type'] = "warning";
-    header("location: show_notulen.php");
 }
-
 
 // Generate notulen
 if (isset($_POST['generate_notulen'])) {
-
-    // var_dump($_POST);
-    // var_dump($_FILES);
-    // die;
-
-
     $id_agenda = $_POST['id_agenda'];
     $isi_notulen = $_POST['isi_notulen'];
 
+    $target_dir = "upload_pic/";
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    $file_name = htmlspecialchars( basename( $_FILES["fileToUpload"]["name"]));
 
-    $mysqli->query("INSERT INTO data_notulen (isi_notulen,id_agenda) VALUES ('$isi_notulen','$id_agenda')") or die($mysqli->error);
+    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    if($check !== false) {
+        echo "File berbentuk gambar - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "File bukan gambar.";
+        $uploadOk = 0;
+    }
 
-    header("location: show_notulen.php");
+    // Check file size
+    if ($_FILES["fileToUpload"]["size"] > 1000000) {
+        echo "Maaf, file yang diunggah memiliki ukuran yang besar.";
+        $uploadOk = 0;
+    }
+    
+    // Allow certain file formats
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+        echo "Maaf, file yang diunggah harus bertipe .jpg .png .jpeg.";
+        $uploadOk = 0;
+    }
+    
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Oops. File gagal diunggah, cobalah kembali beberapa saat lagi.";
+    // if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+        echo "File ". $file_name . " berhasil diunggah.";
+        $mysqli->query("INSERT INTO data_notulen (isi_notulen, id_agenda, file_name) VALUES ('$isi_notulen','$id_agenda', '$file_name')") or die($mysqli->error);
+        header("location: show_notulen.php");
+        } else {
+        echo "Maaf, terdapat kesalahan dalam mengunggah file.";
+        }
+    }
 }
