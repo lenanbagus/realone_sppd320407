@@ -166,7 +166,7 @@
 														Foto kegiatan yang sudah diunggah
 													</div>
 													<div class="col-9 pl-0">
-														<img src="<?php echo "upload_pic/".$row['file_name']; ?>" style="max-width:50%; max-height:100%;">
+														<img src="<?php echo "upload_pic/" . $row['file_name']; ?>" style="max-width:50%; max-height:100%;">
 													</div>
 												</div>
 												<hr>
@@ -175,7 +175,7 @@
 														Ubah dan Unggah foto kegiatan
 													</div>
 													<div class="col-9 pl-0">
-														<input type="file" name="editAndUploadFile" id="editAndUploadFile">
+														<input type="file" name="editAndUploadFile" id="editAndUploadFile" value="<?php echo $row['file_name']; ?>"><?php echo $row['file_name']; ?>
 														<div class="mt-2" style="font-style: italic;">Hanya format file .jpg .png .jpeg yang dapat diunggah dengan ukuran maks. 5mb</div>
 													</div>
 												</div>
