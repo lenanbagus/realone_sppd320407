@@ -46,9 +46,22 @@
 	<?php
 	// db_hosting below
 	// $mysqli = new mysqli('localhost:3306', 'tane8339_lenan', '320407.', 'tane8339_cilengkrang') or die(mysqli_error($mysqli));
+
+	//pagination halaman
+	$batas = 10;
+	$halaman = isset($_GET['halaman'])?(int)$_GET['halaman'] : 1;
+	$halaman_awal = ($halaman>1) ? ($halaman * $batas) - $batas : 0;
+	$previous = $halaman - 1;
+	$next = $halaman + 1;
+
 	$mysqli = new mysqli('localhost', 'root', '', 'cilengkrang') or die(mysqli_error($mysqli));
 
-	$result = $mysqli->query("SELECT * FROM data_asn INNER JOIN data_agenda ON data_asn.id = data_agenda.id_asn ORDER BY tgl_mulai DESC") or die($mysqli->error);
+	$data_agenda = $mysqli->query("SELECT * FROM data_asn INNER JOIN data_agenda ON data_asn.id = data_agenda.id_asn ORDER BY tgl_mulai DESC") or die($mysqli->error);
+
+	$jumlah_data = mysqli_num_rows($data_agenda);
+	$total_halaman = ceil($jumlah_data / $batas);
+
+	$result = $mysqli->query("SELECT * FROM data_asn INNER JOIN data_agenda ON data_asn.id = data_agenda.id_asn ORDER BY tgl_mulai DESC limit $halaman_awal, $batas") or die($mysqli->error);
 	?>
 
 	<div class="container-fluid">
@@ -314,13 +327,44 @@
 						</div>
 					</div>
 				<?php endwhile; ?>
+			</div>
 
-				<div class="row justify-content-end">
-					<div class="mt-5 mb-2">
-						<a href="data_agenda.php" class="btn btn-success btn-sm">Tambah Agenda Perjalanan</a>
-					</div>
+			<div class="d-flex pagination-bottom">
+				<div class="mr-auto p-2">
+					<ul class="pagination">
+						<li class="page-item">
+							<a class="page-link" <?php if($halaman > 1){ echo "href='?halaman=$previous'"; } ?>>
+								<i class="fa fa-backward" aria-hidden="true"></i>
+							</a>
+						</li>
+
+						<?php 
+							for($x=1;$x<=$total_halaman;$x++){
+								$linkActive = ($halaman == $x) ? 'active-page' : '';
+
+								?> 
+									<li class="page-item">
+										<a class="page-link <?php echo $linkActive; ?>" href="?halaman=<?php echo $x ?>">
+											<?php echo $x; ?>
+										</a>
+									</li>
+								<?php
+							}
+						?>
+
+						<li class="page-item">
+							<a  class="page-link" <?php if($halaman < $total_halaman) { echo "href='?halaman=$next'"; } ?>>
+								<i class="fa fa-forward" aria-hidden="true"></i>
+							</a>
+						</li>
+
+						<div class="d-flex align-items-center pl-3">Jumlah Data : <strong class="pl-1"><?php echo "$jumlah_data"; ?></strong></div>
+					</ul>
 				</div>
 
+				<div class="d-flex align-items-center p-2">
+					<a href="data_agenda.php" class="btn btn-success btn-sm">Tambah Agenda Perjalanan</a>
+				</div>
 			</div>
 		</div>
 	</div>
