@@ -22,14 +22,14 @@
     : <?php echo $row['kegiatan']; ?>
   </div>
 </div>
-<!-- <div class="row my-3">
+<div class="row my-3">
 	<div class="col-3">
 		Lokasi
 	</div>
 	<div class="col-9 pl-0">
 		: <?php echo $row['lokasi']; ?>
 	</div>
-</div> -->
+</div>
 <!-- <div class="row my-3">
   <div class="col-3">
     Lama Perjalanan Dinas
