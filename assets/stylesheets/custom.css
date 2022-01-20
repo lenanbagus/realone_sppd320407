@@ -63,3 +63,14 @@ body {
 .grid-body:nth-child(odd) {
   background-color: #EEE;
 }
+
+.pagination-bottom {
+  padding: 0 1.25rem;
+  font-size: 14px;
+}
+
+.active-page,
+.active-page:hover {
+  background-color: #007bff;
+  color: #fff;
+}
