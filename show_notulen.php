@@ -71,17 +71,31 @@
 	<?php endif ?>
 
 	<?php
-	// db_hosting below
-	// $mysqli = new mysqli('localhost:3306', 'tane8339_lenan', '320407.', 'tane8339_cilengkrang') or die(mysqli_error($mysqli));
+		// db_hosting below
+		// $mysqli = new mysqli('localhost:3306', 'tane8339_lenan', '320407.', 'tane8339_cilengkrang') or die(mysqli_error($mysqli));
 
-	// (local) tidak perlu memanggil konfig db
-	//$mysqli = new mysqli('localhost', 'root', '', 'cilengkrang') or die(mysqli_error($mysqli));
+		// (local) tidak perlu memanggil konfig db
+		//$mysqli = new mysqli('localhost', 'root', '', 'cilengkrang') or die(mysqli_error($mysqli));
 
-	// $result = $mysqli->query("SELECT * FROM data_agenda 
-	// JOIN data_notulen ON data_agenda.id = data_notulen.id_agenda
-	// JOIN data_asn ON data_asn.id = data_agenda.id_asn") or die($mysqli->error);
+		// $result = $mysqli->query("SELECT * FROM data_agenda 
+		// JOIN data_notulen ON data_agenda.id = data_notulen.id_agenda
+		// JOIN data_asn ON data_asn.id = data_agenda.id_asn") or die($mysqli->error);
 
-	$result = $mysqli->query("SELECT data_notulen.id, data_notulen.isi_notulen, data_notulen.id_agenda, data_notulen.file_name, data_agenda.dasar_surat, data_agenda.lokasi, data_agenda.kegiatan, data_agenda.id_asn, data_asn.name FROM data_notulen JOIN data_agenda ON data_notulen.id_agenda = data_agenda.id JOIN data_asn ON data_agenda.id_asn = data_asn.id ORDER BY data_notulen.created_at DESC") or die($mysqli->error);
+		//pagination halaman
+		$batas = 10;
+		$halaman = isset($_GET['halaman'])?(int)$_GET['halaman'] : 1;
+		$halaman_awal = ($halaman>1) ? ($halaman * $batas) - $batas : 0;
+		$previous = $halaman - 1;
+		$next = $halaman + 1;
+
+		$data_notulen = $mysqli->query("SELECT data_notulen.id, data_notulen.isi_notulen, data_notulen.id_agenda, data_notulen.file_name, data_agenda.dasar_surat, data_agenda.lokasi, data_agenda.kegiatan, data_agenda.id_asn, data_asn.name FROM data_notulen JOIN data_agenda ON data_notulen.id_agenda = data_agenda.id JOIN data_asn ON data_agenda.id_asn = data_asn.id ORDER BY data_notulen.created_at DESC") or die($mysqli->error);
+
+		$jumlah_data = mysqli_num_rows($data_notulen);
+		$total_halaman = ceil($jumlah_data / $batas);
+
+		$result = $mysqli->query("SELECT data_notulen.id, data_notulen.isi_notulen, data_notulen.id_agenda, data_notulen.file_name, data_agenda.dasar_surat, data_agenda.lokasi, data_agenda.kegiatan, data_agenda.id_asn, data_asn.name FROM data_notulen JOIN data_agenda ON data_notulen.id_agenda = data_agenda.id JOIN data_asn ON data_agenda.id_asn = data_asn.id ORDER BY data_notulen.created_at DESC limit $halaman_awal, $batas") or die($mysqli->error);
+
+		$nomor = $halaman_awal+1;
 	?>
 
 	<div class="container-fluid">
@@ -251,6 +265,40 @@
 						</div>
 					</div>
 				<?php endwhile; ?>
+			</div>
+
+			<div class="d-flex pagination-bottom">
+				<div class="mr-auto p-2">
+					<ul class="pagination">
+						<li class="page-item">
+							<a class="page-link" <?php if($halaman > 1){ echo "href='?halaman=$previous'"; } ?>>
+								<i class="fa fa-backward" aria-hidden="true"></i>
+							</a>
+						</li>
+
+						<?php 
+							for($x=1;$x<=$total_halaman;$x++){
+								$linkActive = ($halaman == $x) ? 'active-page' : '';
+
+								?> 
+									<li class="page-item">
+										<a class="page-link <?php echo $linkActive; ?>" href="?halaman=<?php echo $x ?>">
+											<?php echo $x; ?>
+										</a>
+									</li>
+								<?php
+							}
+						?>
+
+						<li class="page-item">
+							<a  class="page-link" <?php if($halaman < $total_halaman) { echo "href='?halaman=$next'"; } ?>>
+								<i class="fa fa-forward" aria-hidden="true"></i>
+							</a>
+						</li>
+
+						<div class="d-flex align-items-center pl-3">Jumlah Data : <strong class="pl-1"><?php echo "$jumlah_data"; ?></strong></div>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
